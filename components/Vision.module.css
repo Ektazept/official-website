@@ -1,0 +1,87 @@
+.vision {
+  padding: var(--sec-pad) 0;
+  background: transparent;
+  border-top: 1px solid var(--dark-line);
+  border-bottom: 1px solid var(--dark-line);
+}
+
+.visionGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.visionLeft {
+  position: sticky;
+  top: calc(var(--nav-h) + 42px);
+}
+
+.visionLeft h2 {
+  font-size: clamp(32px, 3.6vw, 46px);
+  margin-top: 18px;
+}
+
+.vmBlock {
+  border-top: 1px solid var(--dark-line);
+  padding: 34px 0 40px;
+  transition: border-color 0.3s;
+}
+
+.vmIdx {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--slate);
+  transition: color 0.3s;
+  display: block;
+}
+
+.vmBlock:hover .vmIdx {
+  color: var(--purple);
+}
+
+.vmText {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 500;
+  line-height: 1.38;
+  letter-spacing: -0.01em;
+  margin-top: 16px;
+}
+
+.essence {
+  margin-top: 8px;
+  padding-top: 30px;
+}
+
+.essenceLabel {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--slate);
+}
+
+.essenceLine {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+@media (max-width: 820px) {
+  .visionGrid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .visionLeft {
+    position: static;
+  }
+
+  .vmBlock {
+    padding: 24px 0 28px;
+  }
+
+  .essenceLine {
+    font-size: 19px;
+  }
+}

@@ -1,0 +1,52 @@
+.socialLinks {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.socialBtn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.socialBtn:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 3px;
+}
+
+.socialBtn svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+/* ── light variant: for dark backgrounds (team section, footer) ── */
+.light .socialBtn {
+  border-color: var(--dark-line);
+  color: var(--slate-light);
+}
+
+.light .socialBtn:hover {
+  border-color: var(--purple);
+  color: var(--purple-soft);
+  background: rgba(167, 139, 250, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ── dark variant: for light backgrounds ── */
+.dark .socialBtn {
+  border-color: var(--line);
+  color: var(--slate);
+}
+
+.dark .socialBtn:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  background: rgba(29, 78, 216, 0.06);
+  transform: translateY(-2px);
+}

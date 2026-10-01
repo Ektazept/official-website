@@ -1,0 +1,78 @@
+.faq {
+  padding: var(--sec-pad) 0;
+}
+
+.faqList {
+  max-width: 800px;
+  margin: 0 auto;
+  border-top: 1px solid var(--dark-line);
+}
+
+.faqItem {
+  border-bottom: 1px solid var(--dark-line);
+}
+
+.faqQ {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: left;
+  padding: 22px 4px;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: color 0.2s;
+  min-height: 56px;
+  color: #e2e8f0;
+}
+
+.faqQ:hover {
+  color: var(--blue-soft);
+}
+
+.faqQ svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  color: var(--purple);
+  transition: transform 0.35s;
+}
+
+.open .faqQ svg {
+  transform: rotate(45deg);
+}
+
+/* CSS grid height animation */
+.faqA {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.open .faqA {
+  grid-template-rows: 1fr;
+}
+
+.faqA > div {
+  overflow: hidden;
+}
+
+.faqA p {
+  color: var(--slate-light);
+  padding: 0 4px 24px;
+  max-width: 64ch;
+}
+
+@media (max-width: 560px) {
+  .faqQ {
+    font-size: 16.5px;
+    padding: 18px 2px;
+  }
+
+  .faqA p {
+    font-size: 14.5px;
+  }
+}

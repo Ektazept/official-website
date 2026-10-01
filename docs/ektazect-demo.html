@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>EKTAZECT — The Unified SaaS Ecosystem</title>
+<meta name="description" content="EKTAZECT unifies your apps, data, and people in a single SaaS ecosystem that scales seamlessly — from a team of one to the enterprise.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/><text x='16' y='23' font-family='Arial' font-size='19' font-weight='700' fill='white' text-anchor='middle'>E</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS (from brand-data.md) ============ */
+:root{
+  --blue:#1D4ED8; --blue-deep:#1E40AF; --blue-soft:#3B82F6;
+  --ink:#0F172A; --ink-2:#0A101F;
+  --slate:#64748B; --slate-light:#94A3B8;
+  --bg:#F8FAFC; --panel:#FFFFFF; --line:#E2E8F0;
+  --purple:#7C3AED; --purple-soft:#A78BFA;
+  --grad:linear-gradient(135deg,#1D4ED8 0%,#7C3AED 100%);
+  --dark-line:rgba(148,163,184,.16);
+  --f-display:'Space Grotesk',sans-serif;
+  --f-ui:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --f-mono:'Roboto Mono',monospace;
+  --r:16px;
+  --sec-pad:120px;
+  --nav-h:68px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--f-ui);font-size:16px;line-height:1.6;color:var(--ink);background:var(--bg);
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  overflow-x:clip;
+}
+::selection{background:rgba(124,58,237,.22)}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;background:none;border:none;color:inherit;-webkit-tap-highlight-color:transparent}
+section{scroll-margin-top:calc(var(--nav-h) + 8px)}
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--f-mono)}
+@media(max-width:860px){
+  :root{--sec-pad:78px;--nav-h:60px}
+  .container{padding:0 20px}
+}
+
+/* ============ REVEAL ============ */
+[data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+[data-reveal].rv-in{opacity:1;transform:none}
+
+/* ============ TYPE ============ */
+h1,h2,h3{font-family:var(--f-display);letter-spacing:-.02em;line-height:1.12}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.18em;color:var(--purple);display:inline-flex;align-items:center;gap:10px;text-transform:uppercase}
+.eyebrow .eb-dot{width:7px;height:7px;background:var(--purple);transform:rotate(45deg);flex:none}
+.sec-head{margin-bottom:56px}
+.sec-head h2{font-size:clamp(28px,4.4vw,44px);font-weight:700;margin-top:18px}
+.sec-head.split{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:end}
+.sec-lede{color:var(--slate);font-size:17px;max-width:46ch}
+@media(max-width:820px){
+  .sec-head{margin-bottom:38px}
+  .sec-head.split{grid-template-columns:1fr;gap:14px}
+  .sec-lede{font-size:15.5px}
+}
+
+/* ============ BUTTONS (44px+ touch targets) ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:12px 24px;border-radius:10px;font-weight:600;font-size:15px;line-height:1;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;white-space:nowrap}
+.btn svg{width:16px;height:16px;flex:none}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--blue-deep);transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(29,78,216,.55)}
+.btn-grad{background:var(--grad);color:#fff}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 12px 28px -10px rgba(124,58,237,.55)}
+.btn-ghost{border:1px solid var(--line);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.btn-ghost-light{border:1px solid rgba(255,255,255,.28);color:#fff}
+.btn-ghost-light:hover{border-color:#fff;transform:translateY(-2px)}
+.btn:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
+.skip{position:fixed;left:16px;top:-60px;z-index:300;background:var(--ink);color:#fff;padding:10px 16px;border-radius:8px;transition:top .2s}
+.skip:focus{top:16px}
+
+/* ============ NAV ============ */
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(248,250,252,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);gap:16px}
+.logo{display:inline-flex;align-items:center;gap:10px;flex:none}
+.logo-mark{width:24px;height:24px;border-radius:7px;background:var(--grad);flex:none;display:grid;place-items:center;color:#fff;font-family:var(--f-display);font-weight:700;font-size:14px;line-height:1}
+.logo-word{font-family:var(--f-display);font-weight:700;font-size:18px;letter-spacing:.02em;color:#fff;transition:color .3s;white-space:nowrap}
+.logo-word .z{color:var(--purple-soft);transition:color .3s}
+.nav.scrolled .logo-word{color:var(--ink)}
+.nav.scrolled .logo-word .z{color:var(--purple)}
+.nav-links{display:flex;gap:34px;align-items:center}
+.nav-links a{font-size:14.5px;font-weight:500;color:rgba(255,255,255,.78);position:relative;padding:6px 0;transition:color .2s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--purple-soft);transition:width .25s}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-links a.active::after{width:100%}
+.nav.scrolled .nav-links a{color:var(--slate)}
+.nav.scrolled .nav-links a:hover,.nav.scrolled .nav-links a.active{color:var(--ink)}
+.nav.scrolled .nav-links a::after{background:var(--purple)}
+.nav .btn{padding:10px 18px;min-height:40px;font-size:14px}
+.burger{display:none;color:#fff;width:44px;height:44px;place-items:center;margin-right:-8px}
+.nav.scrolled .burger{color:var(--ink)}
+@media(max-width:1024px){.nav-links{gap:22px}}
+@media(max-width:860px){.nav-links,.nav>.btn{display:none}.burger{display:grid}}
+
+/* mobile overlay */
+.mmenu{position:fixed;inset:0;background:var(--ink);z-index:200;display:flex;flex-direction:column;padding:20px 24px calc(20px + env(safe-area-inset-bottom));opacity:0;pointer-events:none;transition:opacity .3s;overflow-y:auto}
+.mmenu.open{opacity:1;pointer-events:auto}
+.mmenu-top{display:flex;justify-content:space-between;align-items:center;flex:none}
+.mmenu-links{margin:auto 0;display:flex;flex-direction:column;gap:2px;padding:24px 0}
+.mmenu-links a{font-family:var(--f-display);font-size:clamp(30px,8.5vw,42px);font-weight:700;color:#fff;padding:14px 0;border-bottom:1px solid var(--dark-line);opacity:0;transform:translateY(16px);transition:.5s cubic-bezier(.22,1,.36,1)}
+.mmenu.open .mmenu-links a{opacity:1;transform:none}
+.mmenu .btn{justify-content:center;margin-bottom:12px;flex:none}
+.mmenu-close{color:#fff;width:44px;height:44px;display:grid;place-items:center;margin-right:-8px}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:var(--ink);color:#fff;min-height:94vh;display:flex;align-items:center;overflow:hidden}
+@supports(height:100svh){.hero{min-height:100svh}}
+#converge{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero-inner{position:relative;z-index:2;width:100%;padding-top:110px;padding-bottom:90px}
+.hero h1{font-size:clamp(38px,6vw,68px);font-weight:700;max-width:13ch}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{margin-top:24px;font-size:18px;line-height:1.65;color:#B9C4D6;max-width:52ch}
+.hero-cta{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
+.hero-meta{margin-top:30px;font-size:12px;letter-spacing:.14em;color:var(--slate-light)}
+.scroll-cue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;color:var(--slate-light);transition:color .2s;padding:10px}
+.scroll-cue:hover{color:#fff}
+.scroll-cue svg{width:26px;height:26px;animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+/* MOBILE HERO REDESIGN: text stacks on top, orbit re-centers below via canvas JS */
+@media(max-width:860px){
+  .hero{min-height:auto;align-items:flex-start}
+  .hero-inner{padding-top:calc(var(--nav-h) + 46px);padding-bottom:clamp(280px,72vw,400px)}
+  .hero h1{font-size:clamp(34px,9.5vw,46px);max-width:100%}
+  .hero-sub{font-size:16px;margin-top:18px;max-width:100%}
+  .hero-cta{margin-top:28px}
+  .hero-cta .btn{flex:1 1 100%}
+  .hero-meta{font-size:12px;letter-spacing:.1em;margin-top:24px;line-height:2}
+  .scroll-cue{display:none}
+}
+@media(max-width:420px){
+  .hero-inner{padding-bottom:clamp(260px,88vw,340px)}
+}
+
+/* ============ MARQUEE ============ */
+.marquee-sec{border-bottom:1px solid var(--line);padding:22px 0;overflow:hidden}
+.marquee-label{text-align:center;font-size:12px;letter-spacing:.2em;color:var(--slate);margin-bottom:16px}
+.marquee{display:flex;width:max-content;animation:mq 30s linear infinite}
+.marquee:hover{animation-play-state:paused}
+.mq-track{display:flex;align-items:center}
+.mq-track span{font-family:var(--f-mono);font-size:14px;letter-spacing:.12em;color:var(--slate);padding:0 26px;position:relative;white-space:nowrap}
+.mq-track span::after{content:"";position:absolute;right:-4px;top:50%;width:6px;height:6px;background:var(--purple);opacity:.55;transform:translateY(-50%) rotate(45deg)}
+@media(max-width:560px){.mq-track span{font-size:12.5px;padding:0 18px}}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ============ STATS ============ */
+.stats{padding:84px 0}
+.stats-row{display:flex;flex-wrap:wrap}
+.stat{flex:1 1 220px;padding:8px 32px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:none;padding-left:0}
+.stat-n{font-family:var(--f-display);font-weight:700;font-size:clamp(36px,4vw,50px);letter-spacing:-.02em}
+.stat-n em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat-l{font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--slate);margin-top:6px}
+@media(max-width:700px){
+  .stats{padding:56px 0}
+  .stats-row{display:grid;grid-template-columns:1fr 1fr;gap:26px 18px}
+  .stat{border-left:none;padding:0;border-top:2px solid var(--line);padding-top:14px}
+  .stat-n{font-size:clamp(30px,8.5vw,40px)}
+  .stat-l{font-size:12px;letter-spacing:.12em}
+}
+@media(max-width:360px){.stats-row{grid-template-columns:1fr}}
+
+/* ============ VISION / MISSION ============ */
+.vision{padding:var(--sec-pad) 0;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.vision-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.vision-left{position:sticky;top:calc(var(--nav-h) + 42px)}
+.vision-left h2{font-size:clamp(32px,3.6vw,46px);margin-top:18px}
+.vm-block{border-top:1px solid var(--line);padding:34px 0 40px;transition:border-color .3s}
+.vm-idx{font-size:12px;letter-spacing:.18em;color:var(--slate);transition:color .3s}
+.vm-text{font-family:var(--f-display);font-size:clamp(20px,2.4vw,28px);font-weight:500;line-height:1.38;letter-spacing:-.01em;margin-top:16px}
+.vm-block:hover .vm-idx{color:var(--purple)}
+.essence{margin-top:8px;padding-top:30px}
+.essence-label{font-family:var(--f-mono);font-size:12px;letter-spacing:.18em;color:var(--slate)}
+.essence-line{font-family:var(--f-display);font-size:22px;font-weight:600;margin-top:10px}
+@media(max-width:820px){
+  .vision-grid{grid-template-columns:1fr;gap:30px}
+  .vision-left{position:static}
+  .vm-block{padding:24px 0 28px}
+  .essence-line{font-size:19px}
+}
+
+/* ============ ECOSYSTEM BENTO ============ */
+.ecosystem{padding:var(--sec-pad) 0}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.bpanel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:26px;position:relative;transition:border-color .3s,box-shadow .3s,transform .3s;overflow:hidden}
+.bpanel:hover{border-color:rgba(29,78,216,.4);box-shadow:0 18px 44px -22px rgba(15,23,42,.18);transform:translateY(-3px)}
+.b-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.b-idx{font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--slate)}
+.b-arrow{color:var(--blue);opacity:0;transform:translate(-6px,6px);transition:.3s}
+.bpanel:hover .b-arrow{opacity:1;transform:none}
+.b-arrow svg{width:18px;height:18px}
+.b-name{font-family:var(--f-display);font-size:21px;font-weight:600}
+.b-name b{color:var(--purple);font-weight:600}
+.b-desc{color:var(--slate);font-size:14.5px;margin-top:8px;max-width:52ch}
+.b-flow{grid-column:span 2;grid-row:span 2;display:flex;flex-direction:column}
+.b-pulse{grid-column:span 2}
+.b-vault{grid-column:span 1}
+.b-id{grid-column:span 1}
+.b-mesh{grid-column:span 4}
+.b-flow svg{width:100%;margin:auto 0}
+.fnode circle{fill:#fff;stroke:#CBD5E1;stroke-width:1.5;transition:stroke .25s,fill .25s}
+.fnode text{font-family:var(--f-mono);font-size:10px;fill:var(--slate);text-anchor:middle;transition:fill .25s}
+.fnode.active circle{stroke:var(--purple);fill:rgba(124,58,237,.08)}
+.fnode.active text{fill:var(--purple)}
+.flow-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:14px;flex-wrap:wrap}
+.flow-status{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;color:var(--slate);transition:color .3s}
+.flow-status.run{color:var(--blue)}
+.flow-status.done{color:var(--purple)}
+.btn-mini{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;border:1px solid var(--line);border-radius:8px;padding:11px 18px;min-height:42px;transition:.2s}
+.btn-mini:hover{border-color:var(--blue);color:var(--blue)}
+.pulse-wrap{position:relative}
+#pulseChart{width:100%;height:120px;display:block}
+.pulse-val{position:absolute;top:0;right:0;font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--purple)}
+.typer{font-family:var(--f-mono);font-size:12px;line-height:1.9;margin-top:14px;min-height:118px;color:var(--ink);overflow:hidden}
+.typer .tl-ok{color:var(--purple)}
+.typer .caret{display:inline-block;width:7px;height:13px;background:var(--blue);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.switch-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:16px}
+.switch-title{font-size:14px;font-weight:600}
+.switch-sub{font-size:12px;letter-spacing:.12em;color:var(--slate);margin-top:5px}
+.switch{width:48px;height:28px;border-radius:999px;background:#CBD5E1;position:relative;flex:none;transition:background .25s}
+.switch .knob{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .25s;box-shadow:0 1px 3px rgba(15,23,42,.25)}
+.switch[aria-checked="true"]{background:var(--blue)}
+.switch[aria-checked="true"] .knob{transform:translateX(20px)}
+.id-audit{margin-top:22px;padding-top:16px;border-top:1px dashed var(--line);font-size:12px;letter-spacing:.14em;color:var(--slate);display:flex;align-items:center;gap:9px}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);animation:pd 1.6s ease-in-out infinite;flex:none}
+@keyframes pd{0%,100%{box-shadow:0 0 0 0 rgba(29,78,216,.35)}55%{box-shadow:0 0 0 7px rgba(29,78,237,0)}}
+.mesh-flex{display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:center}
+.mesh-count{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--slate);margin-top:18px}
+.mesh-count b{color:var(--purple);font-weight:500}
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chip{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;padding:11px 16px;min-height:42px;border:1px solid var(--line);border-radius:999px;color:var(--slate);transition:border-color .2s,color .2s,background .2s}
+.chip:hover{border-color:var(--blue);color:var(--blue)}
+.chip.on{border-color:var(--purple);color:var(--purple);background:rgba(124,58,237,.06)}
+.chip.on::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--purple);margin-right:8px;vertical-align:1px}
+.chip.pop{animation:pop .35s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pop{40%{transform:scale(1.14)}}
+@media(max-width:960px){
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .b-flow,.b-pulse,.b-mesh{grid-column:span 2}
+  .mesh-flex{grid-template-columns:1fr;gap:20px}
+}
+@media(max-width:640px){
+  .bento{grid-template-columns:1fr;gap:12px}
+  .b-flow,.b-pulse,.b-vault,.b-id,.b-mesh{grid-column:span 1}
+  .bpanel{padding:22px 20px}
+  .b-name{font-size:19px}
+  .b-desc{font-size:14px}
+  #pulseChart{height:100px}
+  .typer{min-height:0}
+  /* VAULT/ID side-by-side even on narrow screens */
+  .b-vault,.b-id{grid-column:span 1 !important}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .b-flow,.b-pulse,.b-mesh{grid-column:span 2}
+  .mesh-count{font-size:12px}
+}
+
+/* ============ TESTIMONIALS ============ */
+.quotes{padding:var(--sec-pad) 0;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.q-stage{max-width:820px;touch-action:pan-y}
+.t-slide{transition:opacity .3s,transform .3s}
+.t-slide.out{opacity:0;transform:translateY(12px)}
+.t-quote{font-family:var(--f-display);font-size:clamp(19px,2.8vw,31px);font-weight:500;line-height:1.42;letter-spacing:-.01em}
+.t-quote::before{content:"“";color:var(--purple)}
+.t-quote::after{content:"”";color:var(--purple)}
+.t-author{display:flex;align-items:center;gap:14px;margin-top:30px}
+.t-author img{width:46px;height:46px;border-radius:50%;object-fit:cover;flex:none}
+.t-name{font-weight:600;font-size:15px}
+.t-role{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--slate);margin-top:2px}
+.t-ctrl{display:flex;align-items:center;gap:16px;margin-top:38px}
+.t-btn{width:48px;height:48px;border:1px solid var(--line);border-radius:12px;display:grid;place-items:center;transition:.2s;color:var(--ink)}
+.t-btn:hover{border-color:var(--blue);color:var(--blue)}
+.t-btn svg{width:17px;height:17px}
+.t-dots{display:flex;gap:8px;margin-left:4px}
+.t-dot{width:22px;height:22px;border-radius:50%;background:transparent;position:relative;transition:.25s;padding:0}
+.t-dot::after{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--line);transition:.25s}
+.t-dot.on::after{background:var(--purple);transform:scale(1.2)}
+@media(max-width:820px){
+  .t-ctrl{margin-top:28px}
+  .t-author{margin-top:22px}
+}
+
+/* ============ TEAM ============ */
+.team{background:var(--ink);color:#fff;padding:var(--sec-pad) 0}
+.team .sec-head h2{color:#fff}
+.team .sec-lede{color:#B9C4D6}
+.team-list{border-top:1px solid var(--dark-line)}
+.team-item{border-bottom:1px solid var(--dark-line)}
+.team-head{width:100%;display:grid;grid-template-columns:52px 76px 1fr auto 44px;gap:22px;align-items:center;padding:22px 6px;text-align:left;transition:background .25s;color:#fff;min-height:72px}
+.team-head:hover{background:rgba(255,255,255,.035)}
+.t-idx{font-size:12px;color:var(--purple-soft);letter-spacing:.14em}
+.t-img{width:64px;height:64px;border-radius:14px;object-fit:cover;filter:grayscale(1);transition:filter .35s,transform .35s}
+.team-head:hover .t-img,.team-item.open .t-img{filter:none;transform:scale(1.04)}
+.t-name{font-family:var(--f-display);font-size:22px;font-weight:600;display:block;overflow-wrap:anywhere}
+.t-role{font-size:14px;color:var(--slate-light);display:block;margin-top:2px}
+.t-tags{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--slate-light);text-align:right;max-width:220px}
+.t-plus{width:44px;height:44px;border:1px solid var(--dark-line);border-radius:50%;display:grid;place-items:center;transition:.3s;justify-self:end}
+.t-plus svg{width:15px;height:15px;transition:transform .3s}
+.team-item.open .t-plus{border-color:var(--purple);color:var(--purple-soft)}
+.team-item.open .t-plus svg{transform:rotate(45deg)}
+.team-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.22,1,.36,1)}
+.team-item.open .team-body{grid-template-rows:1fr}
+.team-body-in{overflow:hidden}
+.t-bio{max-width:62ch;color:#C7D0DE;padding:4px 6px 8px 74px;font-size:15.5px}
+.t-social{display:flex;gap:9px;padding:12px 6px 28px 74px}
+.t-social button{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;width:44px;height:44px;border:1px solid var(--dark-line);border-radius:10px;color:var(--slate-light);transition:.2s}
+.t-social button:hover{border-color:var(--purple);color:var(--purple-soft)}
+/* MOBILE TEAM REDESIGN: compact row — avatar left, name block center, plus right */
+@media(max-width:760px){
+  .team-head{grid-template-columns:56px 1fr 44px;gap:16px;padding:18px 4px;min-height:68px}
+  .t-idx,.t-tags{display:none}
+  .t-img{width:52px;height:52px;border-radius:12px}
+  .t-name{font-size:18px}
+  .t-role{font-size:13px}
+  .t-plus{width:40px;height:40px}
+  .t-bio{padding:6px 4px 4px;font-size:14.5px}
+  .t-social{padding:10px 4px 24px}
+  .t-social button{width:48px;height:48px}
+}
+
+/* ============ FAQ ============ */
+.faq{padding:var(--sec-pad) 0}
+.faq-list{max-width:800px;margin:0 auto;border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;padding:22px 4px;font-family:var(--f-display);font-size:19px;font-weight:600;letter-spacing:-.01em;transition:color .2s;min-height:56px}
+.faq-q:hover{color:var(--blue)}
+.faq-q svg{width:18px;height:18px;flex:none;color:var(--purple);transition:transform .35s}
+.faq-item.open .faq-q svg{transform:rotate(45deg)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.22,1,.36,1)}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+.faq-a>div{overflow:hidden}
+.faq-a p{color:var(--slate);padding:0 4px 24px;max-width:64ch}
+@media(max-width:560px){
+  .faq-q{font-size:16.5px;padding:18px 2px}
+  .faq-a p{font-size:14.5px}
+}
+
+/* ============ CTA ============ */
+.cta{background:var(--ink);color:#fff;padding:calc(var(--sec-pad) + 10px) 0 calc(var(--sec-pad) - 20px);position:relative;overflow:hidden;text-align:center}
+.cta-word{position:absolute;left:50%;bottom:-.28em;transform:translateX(-50%);font-family:var(--f-display);font-weight:700;font-size:clamp(64px,17vw,240px);letter-spacing:.01em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.07);white-space:nowrap;pointer-events:none;user-select:none;line-height:1}
+.cta .container{position:relative;z-index:2}
+.cta h2{font-size:clamp(32px,5vw,58px)}
+.cta p{color:#B9C4D6;font-size:17.5px;max-width:52ch;margin:20px auto 0}
+.cta-btns{display:flex;gap:14px;justify-content:center;margin-top:38px;flex-wrap:wrap}
+.cta-micro{margin-top:26px;font-size:12px;letter-spacing:.16em;color:var(--slate-light)}
+@media(max-width:860px){
+  .cta p{font-size:15.5px}
+  .cta-btns{margin-top:30px}
+  .cta-btns .btn{flex:1 1 100%;max-width:340px}
+  .cta-micro{font-size:12px;letter-spacing:.1em;line-height:2}
+}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink-2);color:#C7D0DE;border-top:1px solid var(--dark-line)}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px;padding:70px 0 54px}
+.foot-brand p{font-size:14.5px;color:var(--slate-light);margin-top:16px;max-width:30ch}
+.foot-col h4{font-family:var(--f-mono);font-size:12px;letter-spacing:.18em;color:#fff;margin-bottom:18px;font-weight:500}
+.foot-col a{display:block;font-size:14.5px;color:var(--slate-light);padding:8px 0;transition:color .2s}
+.foot-col a:hover{color:#fff}
+.newsletter{border-top:1px solid var(--dark-line);padding:36px 0;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}
+.newsletter h4{font-family:var(--f-display);font-size:20px;font-weight:600;color:#fff}
+.newsletter .nl-sub{font-size:13.5px;color:var(--slate-light);margin-top:4px}
+.nl-form{display:flex;gap:10px;flex:1;max-width:440px;min-width:280px}
+.nl-form input{flex:1;min-width:0;background:rgba(255,255,255,.05);border:1px solid var(--dark-line);border-radius:10px;padding:12px 16px;color:#fff;font-family:var(--f-ui);font-size:16px;transition:border-color .2s;min-height:46px}
+.nl-form input::placeholder{color:var(--slate)}
+.nl-form input:focus{outline:none;border-color:var(--blue-soft)}
+.nl-form input.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+.foot-bottom{border-top:1px solid var(--dark-line);padding:22px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--slate)}
+.status{display:inline-flex;align-items:center;gap:9px;color:var(--slate-light)}
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr;gap:36px}}
+@media(max-width:560px){
+  .foot-grid{grid-template-columns:1fr;gap:8px;padding:52px 0 40px}
+  .foot-brand{margin-bottom:20px}
+  .foot-col h4{margin:22px 0 8px}
+  .newsletter{flex-direction:column;align-items:stretch;gap:18px}
+  .nl-form{min-width:0;flex-direction:column}
+  .foot-bottom{font-size:12px;letter-spacing:.08em}
+}
+
+/* ============ TOASTS (safe-area aware) ============ */
+#toasts{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:300;display:flex;flex-direction:column;align-items:flex-end;gap:10px;pointer-events:none}
+.toast{display:flex;align-items:center;gap:12px;background:var(--ink);color:#fff;padding:14px 18px;border-radius:12px;border-left:3px solid var(--blue);box-shadow:0 16px 40px -12px rgba(15,23,42,.5);font-size:14px;max-width:340px;opacity:0;transform:translateY(14px);transition:.3s cubic-bezier(.22,1,.36,1)}
+.toast.show{opacity:1;transform:none}
+.toast.err{border-left-color:var(--purple)}
+.toast svg{width:18px;height:18px;flex:none;color:var(--purple-soft)}
+@media(max-width:560px){
+  .toast{max-width:none;width:100%;pointer-events:auto}
+}
+
+/* ============ TOUCH DEVICES: kill hover-only affordances ============ */
+@media(hover:none){
+  .bpanel:hover{transform:none;box-shadow:none}
+  .b-arrow{opacity:.6;transform:none}
+  .t-img{filter:none}
+  .btn:hover{transform:none}
+  .team-head:hover{background:transparent}
+}
+
+@media(max-width:420px){
+  .btn{padding:12px 18px;font-size:14.5px}
+  .eyebrow{font-size:12px;letter-spacing:.14em}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
+  html{scroll-behavior:auto}
+  [data-reveal]{opacity:1;transform:none}
+}
+
+/* ============ REFINEMENTS: fluid sizing, scale, pricing ============ */
+:root{--sec-pad:clamp(56px,7vw,92px);--nav-h:clamp(56px,4.5vw,64px);--gutter:clamp(18px,4vw,32px)}
+html{font-size:clamp(14px,.15vw + 13.2px,16px)}
+body{font-size:1rem}
+.container{max-width:min(1180px,100% - 0px);padding:0 var(--gutter)}
+@media(min-width:1600px){.container{max-width:1280px}}
+@media(min-width:2200px){.container{max-width:1440px}}
+.hero h1{font-size:clamp(2.1rem,1rem + 3.4vw,3.8rem)}
+.hero-sub,.sec-lede{font-size:clamp(.95rem,.9rem + .2vw,1.1rem)}
+.sec-head h2{font-size:clamp(1.55rem,1rem + 1.7vw,2.4rem)}
+.btn{font-size:.95rem}
+.stat-l,.eyebrow,.mono{font-size:max(12px,.75rem)}
+@media(min-width:861px) and (max-height:620px){.hero{min-height:auto}.hero-inner{padding-top:calc(var(--nav-h) + 40px)}}
+
+/* ============ PRICING ============ */
+.pricing{padding:var(--sec-pad) 0;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bill{display:inline-flex;align-items:center;gap:14px;margin-top:26px;font-size:.95rem;font-weight:500;color:var(--slate)}
+.bill .on{color:var(--ink)}
+.bill-sw{position:relative;width:52px;height:30px;border-radius:99px;background:var(--line);transition:background .25s;flex:none}
+.bill-sw::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(15,23,42,.3);transition:transform .25s}
+.bill-sw[aria-checked=true]{background:var(--blue)}
+.bill-sw[aria-checked=true]::after{transform:translateX(22px)}
+.bill-sw:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
+.save{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--purple);background:rgba(124,58,237,.1);padding:4px 10px;border-radius:99px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px);align-items:stretch}
+.plan{position:relative;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:clamp(24px,3vw,36px);transition:transform .25s,box-shadow .25s,border-color .25s}
+.plan:hover{transform:translateY(-4px);box-shadow:0 22px 40px -24px rgba(15,23,42,.3);border-color:var(--blue-soft)}
+.plan.pop{background:var(--ink);color:#fff;border-color:transparent;box-shadow:0 0 0 1px rgba(167,139,250,.5),0 30px 60px -30px rgba(124,58,237,.55)}
+.plan-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;padding:5px 14px;border-radius:99px;white-space:nowrap}
+.plan h3{font-size:1.35rem;font-weight:700}
+.plan-desc{margin-top:8px;color:var(--slate);font-size:.95rem;min-height:3em}
+.plan.pop .plan-desc{color:#B9C4D6}
+.price{display:flex;align-items:baseline;gap:6px;margin:24px 0 4px;flex-wrap:wrap}
+.price b{font-family:var(--f-display);font-size:clamp(2.4rem,1.8rem + 2vw,3.4rem);line-height:1;letter-spacing:-.03em}
+.price span{color:var(--slate);font-size:.9rem}
+.plan.pop .price span{color:var(--slate-light)}
+.price-note{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;color:var(--slate);min-height:1.4em}
+.plan.pop .price-note{color:var(--slate-light)}
+.plan ul{list-style:none;margin:26px 0 30px;display:grid;gap:12px;flex:1;font-size:.95rem}
+.plan li{display:flex;gap:10px;align-items:flex-start}
+.plan li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:50%;background:rgba(124,58,237,.14) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.5l2.5 2.5L13 6.5' fill='none' stroke='%237C3AED' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat}
+.plan .btn{width:100%}
+.plan-foot{text-align:center;color:var(--slate);font-size:.9rem;margin-top:32px}
+@media(max-width:960px){.plans{grid-template-columns:1fr;max-width:480px;margin:0 auto;gap:28px}.plan-desc{min-height:0}}
+
+/* ============ COMPACT PASS ============ */
+.sec-head{margin-bottom:clamp(30px,4vw,46px)}
+.stats{padding:clamp(44px,5vw,64px) 0}
+.cta{padding:calc(var(--sec-pad) - 4px) 0 calc(var(--sec-pad) - 24px)}
+.hero{min-height:min(100svh,880px)}
+.hero-inner{padding-top:calc(var(--nav-h) + 40px);padding-bottom:clamp(56px,7vh,84px)}
+.hero-sub{margin-top:18px}
+.hero-cta{margin-top:28px}
+.hero-meta{margin-top:24px}
+@media(min-width:861px){.hero h1{max-width:15ch}.hero-sub{max-width:50ch}}
+@media(max-width:860px){
+  .hero{min-height:auto}
+  .hero-inner{padding-top:calc(var(--nav-h) + 32px);padding-bottom:clamp(250px,70vw,360px)}
+  .hero h1{max-width:100%}
+}
+.btn{min-height:44px;padding:11px 22px}
+.nav .btn{min-height:38px;padding:8px 16px}
+.nav-links{gap:clamp(18px,2.4vw,32px)}
+.plan{padding:clamp(22px,2.4vw,30px)}
+.plan ul{margin:20px 0 24px;gap:10px}
+.price{margin:18px 0 4px}
+.price b{font-size:clamp(2.1rem,1.6rem + 1.4vw,2.9rem)}
+.plan h3{font-size:1.2rem}
+@media(max-width:480px){.btn{white-space:normal}.hero-cta .btn{flex:1 1 100%}.plan-foot{font-size:.85rem}}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="#top" aria-label="EKTAZECT home">
+      <span class="logo-mark">E</span>
+      <span class="logo-word">EKTA<span class="z">ZECT</span></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#ecosystem">Ecosystem</a>
+      <a href="#vision">Vision</a>
+      <a href="#team">Team</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn btn-primary" href="#cta">Get started</a>
+    <button class="burger" id="burger" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- mobile menu -->
+<div class="mmenu" id="mmenu" aria-hidden="true">
+  <div class="mmenu-top">
+    <span class="logo"><span class="logo-mark">E</span><span class="logo-word">EKTA<span class="z">ZECT</span></span></span>
+    <button class="mmenu-close" id="mmenuClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="mmenu-links">
+    <a href="#ecosystem" style="transition-delay:.05s">Ecosystem</a>
+    <a href="#vision" style="transition-delay:.1s">Vision</a>
+    <a href="#team" style="transition-delay:.15s">Team</a>
+    <a href="#pricing" style="transition-delay:.18s">Pricing</a>
+    <a href="#faq" style="transition-delay:.2s">FAQ</a>
+  </div>
+  <a class="btn btn-grad" href="#cta">Get started</a>
+</div>
+
+<main id="main">
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <canvas id="converge" aria-hidden="true"></canvas>
+  <div class="container hero-inner">
+    <p class="eyebrow" style="color:var(--purple-soft)"><span class="eb-dot"></span>The Unified SaaS Ecosystem</p>
+    <h1 style="margin-top:22px">Every tool you rely on. <span class="grad-text">Converged into one.</span></h1>
+    <p class="hero-sub">EKTAZECT unifies your apps, your data, and your people in a single ecosystem — one that scales seamlessly from a team of one to the enterprise, and never asks you to migrate again.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#cta">Start converging
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-ghost-light" href="#ecosystem">Explore the ecosystem</a>
+    </div>
+    <p class="hero-meta mono">NO CREDIT CARD&nbsp;&nbsp;·&nbsp;&nbsp;240+ NATIVE INTEGRATIONS&nbsp;&nbsp;·&nbsp;&nbsp;FREE UP TO 5 SEATS</p>
+  </div>
+  <a class="scroll-cue" href="#proof" aria-label="Scroll down">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+  </a>
+</header>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee-sec" id="proof">
+  <p class="marquee-label mono">CONVERGING WITH THE TOOLS YOU ALREADY USE</p>
+  <div class="marquee" id="marquee">
+    <div class="mq-track" id="mqTrack">
+      <span>SLACK</span><span>GITHUB</span><span>NOTION</span><span>SALESFORCE</span><span>STRIPE</span><span>LINEAR</span><span>FIGMA</span><span>JIRA</span><span>GMAIL</span><span>ZOOM</span><span>HUBSPOT</span><span>SNOWFLAKE</span><span>POSTGRES</span><span>S3</span><span>ZENDESK</span><span>ASANA</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= STATS ================= -->
+<section class="stats">
+  <div class="container stats-row">
+    <div class="stat" data-reveal><div class="stat-n"><span data-count="12400" data-suffix="+">0</span></div><div class="stat-l">TEAMS CONVERGED</div></div>
+    <div class="stat" data-reveal><div class="stat-n"><span data-count="240" data-suffix="+">0</span></div><div class="stat-l">NATIVE INTEGRATIONS</div></div>
+    <div class="stat" data-reveal><div class="stat-n"><span data-count="4.8" data-decimals="1" data-suffix="B">0</span></div><div class="stat-l">DAILY WORKFLOWS</div></div>
+    <div class="stat" data-reveal><div class="stat-n"><span data-count="99.99" data-decimals="2" data-suffix="%">0</span></div><div class="stat-l">UPTIME SLA</div></div>
+  </div>
+</section>
+
+<!-- ================= VISION / MISSION ================= -->
+<section class="vision" id="vision">
+  <div class="container vision-grid">
+    <div class="vision-left" data-reveal>
+      <p class="eyebrow"><span class="eb-dot"></span>Who we are</p>
+      <h2>Built on unity.<br>Engineered for scale.</h2>
+      <p class="sec-lede" style="margin-top:20px">Software fragmentation is the silent tax on every team. EKTAZECT exists to remove it — permanently.</p>
+    </div>
+    <div>
+      <div class="vm-block" data-reveal>
+        <span class="vm-idx mono">01 · OUR VISION</span>
+        <p class="vm-text">To be the central operating system for the modern world — where all digital workflows, data, and tools converge into one intelligent platform.</p>
+      </div>
+      <div class="vm-block" data-reveal>
+        <span class="vm-idx mono">02 · OUR MISSION</span>
+        <p class="vm-text">To eliminate software fragmentation by providing an ever-expanding, unified SaaS ecosystem that scales seamlessly with any individual, team, or enterprise.</p>
+      </div>
+      <div class="essence" data-reveal>
+        <p class="essence-label mono">BRAND ESSENCE</p>
+        <p class="essence-line">Infinite scalability through <span class="grad-text">absolute unity.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ECOSYSTEM / PROJECTS ================= -->
+<section class="ecosystem" id="ecosystem">
+  <div class="container">
+    <div class="sec-head split" data-reveal>
+      <div>
+        <p class="eyebrow"><span class="eb-dot"></span>The ecosystem</p>
+        <h2>Modular by design.<br>United by default.</h2>
+      </div>
+      <p class="sec-lede">Five modules, one nervous system. Everything below runs on the same data layer — turn one on, and the rest get smarter. Try the demos: they're live.</p>
+    </div>
+
+    <div class="bento">
+      <!-- FLOW -->
+      <article class="bpanel b-flow" data-reveal>
+        <div class="b-top"><span class="b-idx">MOD·01</span><span class="b-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></div>
+        <h3 class="b-name">EKTAZECT <b>Flow</b></h3>
+        <p class="b-desc">Workflow automation across every module. Trigger once — Flow routes it, transforms it, and acts on it everywhere.</p>
+        <svg id="flowSvg" viewBox="0 0 340 130" fill="none" aria-hidden="true" style="min-height:110px">
+          <defs><linearGradient id="fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1D4ED8"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs>
+          <path id="flowPath" d="M62 62 C 108 14, 132 14, 170 62 S 232 110, 278 62" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="3 6" stroke-linecap="round"/>
+          <g class="fnode" id="fn1"><circle cx="40" cy="62" r="20"/><text x="40" y="65.5">TRG</text></g>
+          <g class="fnode" id="fn2"><circle cx="170" cy="62" r="20"/><text x="170" y="65.5">MAP</text></g>
+          <g class="fnode" id="fn3"><circle cx="300" cy="62" r="20"/><text x="300" y="65.5">ACT</text></g>
+          <circle id="flowDot" r="5" fill="url(#fg)" opacity="0"/>
+        </svg>
+        <div class="flow-foot">
+          <span class="flow-status mono" id="flowStatus">STATUS · READY</span>
+          <button class="btn-mini mono" id="flowRun">RUN FLOW</button>
+        </div>
+      </article>
+
+      <!-- PULSE -->
+      <article class="bpanel b-pulse" data-reveal>
+        <div class="b-top"><span class="b-idx">MOD·02</span><span class="b-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></div>
+        <h3 class="b-name">EKTAZECT <b>Pulse</b></h3>
+        <p class="b-desc">Realtime analytics over your unified data — no pipelines to babysit, no dashboards to stitch.</p>
+        <div class="pulse-wrap">
+          <canvas id="pulseChart"></canvas>
+          <span class="pulse-val" id="pulseVal">P99 · 214MS</span>
+        </div>
+      </article>
+
+      <!-- VAULT -->
+      <article class="bpanel b-vault" data-reveal>
+        <div class="b-top"><span class="b-idx">MOD·03</span><span class="b-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></div>
+        <h3 class="b-name">EKTAZECT <b>Vault</b></h3>
+        <p class="b-desc">One data layer for every source. Query it all as if it were one database.</p>
+        <div class="typer mono" id="typer"><span id="typerText"></span><span class="caret"></span></div>
+      </article>
+
+      <!-- ID -->
+      <article class="bpanel b-id" data-reveal>
+        <div class="b-top"><span class="b-idx">MOD·04</span><span class="b-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></div>
+        <h3 class="b-name">EKTAZECT <b>ID</b></h3>
+        <p class="b-desc">Identity and access, unified across the entire ecosystem.</p>
+        <div class="switch-row">
+          <div>
+            <div class="switch-title">Enforce SSO</div>
+            <div class="switch-sub mono" id="idSub">PASSWORD AUTH ONLY</div>
+          </div>
+          <button class="switch" id="idSwitch" role="switch" aria-checked="false" aria-label="Toggle SSO enforcement"><span class="knob"></span></button>
+        </div>
+        <div class="id-audit mono"><span class="pulse-dot"></span>AUDIT LOG · STREAMING</div>
+      </article>
+
+      <!-- MESH -->
+      <article class="bpanel b-mesh" data-reveal>
+        <div class="b-top"><span class="b-idx">MOD·05</span><span class="b-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></div>
+        <div class="mesh-flex">
+          <div>
+            <h3 class="b-name">EKTAZECT <b>Mesh</b></h3>
+            <p class="b-desc">The integration fabric. Connect a source once — every module inherits it instantly. Tap a chip to link it.</p>
+            <p class="mesh-count" id="meshCount"><b>3</b> / 240 SOURCES LINKED</p>
+          </div>
+          <div class="chips" id="chips">
+            <button class="chip on">SLACK</button><button class="chip on">GITHUB</button><button class="chip on">NOTION</button>
+            <button class="chip">STRIPE</button><button class="chip">LINEAR</button><button class="chip">ZOOM</button>
+            <button class="chip">FIGMA</button><button class="chip">JIRA</button><button class="chip">GMAIL</button>
+            <button class="chip">SALESFORCE</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="quotes" id="quotes">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <p class="eyebrow"><span class="eb-dot"></span>Signal from the field</p>
+    </div>
+    <div class="q-stage" data-reveal id="qStage">
+      <div class="t-slide" id="tSlide">
+        <p class="t-quote" id="tQuote"></p>
+        <div class="t-author">
+          <img id="tImg" src="" alt="">
+          <div><div class="t-name" id="tName"></div><div class="t-role mono" id="tRole"></div></div>
+        </div>
+      </div>
+      <div class="t-ctrl">
+        <button class="t-btn" id="tPrev" aria-label="Previous quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
+        <button class="t-btn" id="tNext" aria-label="Next quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <div class="t-dots" id="tDots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section class="team" id="team">
+  <div class="container">
+    <div class="sec-head split" data-reveal>
+      <div>
+        <p class="eyebrow" style="color:var(--purple-soft)"><span class="eb-dot"></span>Lead developers</p>
+        <h2>The people behind<br>the convergence.</h2>
+      </div>
+      <p class="sec-lede">A small, senior team with one shared obsession: making software feel like it was always one thing. Tap a row to meet them.</p>
+    </div>
+
+    <div class="team-list" data-reveal>
+      <article class="team-item">
+        <button class="team-head" aria-expanded="false">
+          <span class="t-idx mono">01</span>
+          <img class="t-img" src="https://picsum.photos/seed/ektazect-aarav/160/160.jpg" alt="Portrait of Aarav Mehta" loading="lazy">
+          <span><span class="t-name">Aarav Mehta</span><span class="t-role">Founder &amp; Chief Architect</span></span>
+          <span class="t-tags">DISTRIBUTED SYSTEMS · API DESIGN</span>
+          <span class="t-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="team-body"><div class="team-body-in">
+          <p class="t-bio">Aarav spent fourteen years building distributed platforms before concluding the real problem was never scale — it was the seams between systems. He wrote the first line of EKTAZECT's kernel and still reviews every API contract personally. His rule: if a feature can't explain itself to a first-time user, it ships again.</p>
+          <div class="t-social">
+            <button data-toast="Demo build — Aarav's profile links aren't wired up yet.">X</button>
+            <button data-toast="Demo build — Aarav's profile links aren't wired up yet.">GH</button>
+            <button data-toast="Demo build — Aarav's profile links aren't wired up yet.">IN</button>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="team-item">
+        <button class="team-head" aria-expanded="false">
+          <span class="t-idx mono">02</span>
+          <img class="t-img" src="https://picsum.photos/seed/ektazect-lena/160/160.jpg" alt="Portrait of Lena Kovač" loading="lazy">
+          <span><span class="t-name">Lena Kovač</span><span class="t-role">VP of Engineering</span></span>
+          <span class="t-tags">RELIABILITY · KUBERNETES</span>
+          <span class="t-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="team-body"><div class="team-body-in">
+          <p class="t-bio">Lena keeps 4.8 billion daily workflows flowing at 99.99% uptime. She previously ran reliability for a global payments network and treats every millisecond as a promise. Her team's on-call rotation is famously, almost suspiciously, quiet.</p>
+          <div class="t-social">
+            <button data-toast="Demo build — Lena's profile links aren't wired up yet.">X</button>
+            <button data-toast="Demo build — Lena's profile links aren't wired up yet.">GH</button>
+            <button data-toast="Demo build — Lena's profile links aren't wired up yet.">IN</button>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="team-item">
+        <button class="team-head" aria-expanded="false">
+          <span class="t-idx mono">03</span>
+          <img class="t-img" src="https://picsum.photos/seed/ektazect-darius/160/160.jpg" alt="Portrait of Darius Cole" loading="lazy">
+          <span><span class="t-name">Darius Cole</span><span class="t-role">Head of Design Systems</span></span>
+          <span class="t-tags">DESIGN SYSTEMS · MOTION</span>
+          <span class="t-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="team-body"><div class="team-body-in">
+          <p class="t-bio">Darius believes convergence should feel effortless, not engineered. He built EKTAZECT's design system around a single rule — one interface language for every module — and obsesses over the details most people feel but never notice.</p>
+          <div class="t-social">
+            <button data-toast="Demo build — Darius's profile links aren't wired up yet.">X</button>
+            <button data-toast="Demo build — Darius's profile links aren't wired up yet.">GH</button>
+            <button data-toast="Demo build — Darius's profile links aren't wired up yet.">IN</button>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="team-item">
+        <button class="team-head" aria-expanded="false">
+          <span class="t-idx mono">04</span>
+          <img class="t-img" src="https://picsum.photos/seed/ektazect-yuki/160/160.jpg" alt="Portrait of Yuki Tanaka" loading="lazy">
+          <span><span class="t-name">Yuki Tanaka</span><span class="t-role">Lead, Data &amp; Intelligence</span></span>
+          <span class="t-tags">STREAMING · RUST · ML</span>
+          <span class="t-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="team-body"><div class="team-body-in">
+          <p class="t-bio">Yuki leads the data and intelligence group, turning raw event streams into answers before you finish asking the question. She's the reason Pulse renders in real time and Vault has never lost a row. Rust, streams, and strong coffee.</p>
+          <div class="t-social">
+            <button data-toast="Demo build — Yuki's profile links aren't wired up yet.">X</button>
+            <button data-toast="Demo build — Yuki's profile links aren't wired up yet.">GH</button>
+            <button data-toast="Demo build — Yuki's profile links aren't wired up yet.">IN</button>
+          </div>
+        </div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="sec-head" data-reveal style="text-align:center">
+      <p class="eyebrow"><span class="eb-dot"></span>Pricing</p>
+      <h2>One ecosystem.<br>Priced to scale with you.</h2>
+      <div class="bill"><span id="bM" class="on">Monthly</span><button class="bill-sw" id="billSw" role="switch" aria-checked="false" aria-label="Bill yearly"></button><span id="bY">Yearly</span><span class="save">SAVE 20%</span></div>
+    </div>
+    <div class="plans" data-reveal>
+      <article class="plan">
+        <h3>Starter</h3><p class="plan-desc">For individuals and small teams getting connected.</p>
+        <div class="price"><b>$0</b><span>/ forever</span></div><p class="price-note">Up to 5 users</p>
+        <ul><li>EKTAZECT Flow &amp; Pulse</li><li>10 linked sources</li><li>Community support</li></ul>
+        <button class="btn btn-ghost" data-plan="Starter">Start free</button>
+      </article>
+      <article class="plan pop">
+        <span class="plan-tag">MOST POPULAR</span>
+        <h3>Growth</h3><p class="plan-desc">For scaling teams that need every module, unified.</p>
+        <div class="price"><b data-m="29" data-y="23">$29</b><span>/ user / month</span></div><p class="price-note" id="gNote">Billed monthly</p>
+        <ul><li>All five modules</li><li>Up to 240 linked sources</li><li>SSO &amp; audit logs</li><li>Priority support</li></ul>
+        <button class="btn btn-grad" data-plan="Growth">Start 14-day trial</button>
+      </article>
+      <article class="plan">
+        <h3>Enterprise</h3><p class="plan-desc">For organizations with advanced security and scale needs.</p>
+        <div class="price"><b>Custom</b></div><p class="price-note">Volume pricing</p>
+        <ul><li>Unlimited sources &amp; users</li><li>SOC 2 reports &amp; custom SLAs</li><li>Dedicated success manager</li></ul>
+        <button class="btn btn-primary" data-plan="Enterprise">Talk to sales</button>
+      </article>
+    </div>
+    <p class="plan-foot">All plans include zero-migration upgrades. Demo pricing, for illustration only.</p>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="sec-head" data-reveal style="text-align:center">
+      <p class="eyebrow"><span class="eb-dot"></span>Questions, answered</p>
+      <h2>Everything you'd ask<br>before you converge.</h2>
+    </div>
+    <div class="faq-list" data-reveal>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What exactly is EKTAZECT?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><div><p>EKTAZECT is a unified SaaS ecosystem: one platform where your apps, data, workflows, and identity live together instead of in separate tools. Start with one module — Flow, Pulse, Vault, Mesh, or ID — and the rest connect automatically through a shared data layer.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Do I need to migrate my existing tools?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><div><p>No. Mesh links 240+ sources in a tap, and every connection is inherited by all modules instantly. Most teams converge in an afternoon — and nothing gets moved, copied, or locked in.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How does pricing scale with my team?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><div><p>Modular, like the product. It's free up to 5 seats, then you pay per active module — not per integration, not per workflow. As you grow, unit costs go down, never up. A small business and an enterprise run the exact same platform.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Is EKTAZECT enterprise-ready?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><div><p>Yes — SSO and SCIM through EKTAZECT ID, streaming audit logs, a 99.99% uptime SLA, and SOC 2 compliance. The same infrastructure carries 4.8 billion workflows a day for teams of every size.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">I'm a team of one. Is this overkill?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><div><p>Not at all — EKTAZECT is built to be powerful enough for enterprise developers and accessible enough for a first-time user. Many of our best workflows were designed by solo founders. You'll never outgrow it, because growth is the whole point.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta" id="cta">
+  <div class="cta-word" aria-hidden="true">EKTAZECT</div>
+  <div class="container">
+    <h2 data-reveal>Ready to <span class="grad-text">converge?</span></h2>
+    <p data-reveal>Join 12,400+ teams running their entire stack on EKTAZECT. Set up in minutes — scale forever.</p>
+    <div class="cta-btns" data-reveal>
+      <button class="btn btn-grad" id="ctaStart">Start converging — it's free
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <button class="btn btn-ghost-light" id="ctaDemo">Book a demo</button>
+    </div>
+    <p class="cta-micro mono" data-reveal>SETUP IN MINUTES · NO MIGRATION · CANCEL ANYTIME</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="logo"><span class="logo-mark">E</span><span class="logo-word">EKTA<span class="z">ZECT</span></span></span>
+        <p>The Unified SaaS Ecosystem. All your workflows, data, and tools — one intelligent platform.</p>
+      </div>
+      <div class="foot-col">
+        <h4>PRODUCT</h4>
+        <a href="#ecosystem">EKTAZECT Flow</a>
+        <a href="#ecosystem">EKTAZECT Pulse</a>
+        <a href="#ecosystem">EKTAZECT Vault</a>
+        <a href="#ecosystem">EKTAZECT Mesh</a>
+        <a href="#ecosystem">EKTAZECT ID</a>
+      </div>
+      <div class="foot-col">
+        <h4>COMPANY</h4>
+        <a href="#vision">Vision &amp; Mission</a>
+        <a href="#team">Team</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#" data-toast="Careers page isn't part of this demo — but we're hiring in spirit.">Careers</a>
+        <a href="#" data-toast="Press kit isn't part of this demo.">Press kit</a>
+      </div>
+      <div class="foot-col">
+        <h4>RESOURCES</h4>
+        <a href="#" data-toast="Documentation isn't part of this demo.">Documentation</a>
+        <a href="#" data-toast="API reference isn't part of this demo.">API Reference</a>
+        <a href="#" data-toast="Changelog isn't part of this demo.">Changelog</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+    <div class="newsletter">
+      <div>
+        <h4>The Convergence Brief</h4>
+        <p class="nl-sub">One email a month on unifying your stack. No noise, ever.</p>
+      </div>
+      <form class="nl-form" id="nlForm" novalidate>
+        <input type="email" id="nlEmail" placeholder="you@company.com" aria-label="Email address" autocomplete="email" inputmode="email">
+        <button class="btn btn-primary" type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2025 EKTAZECT, INC. — THE UNIFIED SAAS ECOSYSTEM</span>
+      <span class="status"><span class="pulse-dot"></span>ALL SYSTEMS OPERATIONAL</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toasts" aria-live="polite"></div>
+
+<script>
+/* =================================================================
+   EKTAZECT — single-file demo. Vanilla JS only.
+   Fully responsive: canvas adapts to viewport, touch supported.
+   ================================================================= */
+'use strict';
+const RM  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const IS_TOUCH = window.matchMedia('(hover: none)').matches;
+const $  = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const isMobile = () => window.innerWidth < 860;
+
+/* ---------- Toast system ---------- */
+const toastBox = $('#toasts');
+const ICON_OK  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>';
+const ICON_ERR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg>';
+function toast(msg, kind='ok'){
+  const t = document.createElement('div');
+  t.className = 'toast' + (kind==='err' ? ' err' : '');
+  t.innerHTML = (kind==='err'?ICON_ERR:ICON_OK) + '<span>'+msg+'</span>';
+  toastBox.appendChild(t);
+  requestAnimationFrame(()=>t.classList.add('show'));
+  setTimeout(()=>{ t.classList.remove('show'); setTimeout(()=>t.remove(), 350); }, 3800);
+}
+ $$('[data-toast]').forEach(el=>{
+  el.addEventListener('click', e=>{ e.preventDefault(); toast(el.dataset.toast); });
+});
+
+/* ---------- Nav: scroll state + active section + mobile menu ---------- */
+const nav = $('#nav');
+const onScroll = ()=> nav.classList.toggle('scrolled', window.scrollY > 24);
+window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+const mm = $('#mmenu');
+const setMenu = open=>{
+  mm.classList.toggle('open', open);
+  mm.setAttribute('aria-hidden', String(!open));
+  document.body.style.overflow = open ? 'hidden' : '';
+};
+ $('#burger').addEventListener('click', ()=>setMenu(true));
+ $('#mmenuClose').addEventListener('click', ()=>setMenu(false));
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>setMenu(false)));
+// Close mobile menu with a swipe-down on the link list
+let mTouchY = null;
+mm.addEventListener('touchstart', e=>{ mTouchY = e.touches[0].clientY; }, {passive:true});
+mm.addEventListener('touchend', e=>{
+  if(mTouchY !== null && e.changedTouches[0].clientY - mTouchY > 110) setMenu(false);
+  mTouchY = null;
+}, {passive:true});
+
+// Highlight the nav link of the section currently in view
+const secObs = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(!en.isIntersecting) return;
+    $$('#navLinks a').forEach(a=>a.classList.toggle('active', a.getAttribute('href') === '#'+en.target.id));
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+['ecosystem','vision','team','faq'].forEach(id=>{ const s=document.getElementById(id); if(s) secObs.observe(s); });
+
+/* ---------- Reveal on scroll ---------- */
+const rvObs = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('rv-in'); rvObs.unobserve(en.target); } });
+},{threshold:.12});
+ $$('[data-reveal]').forEach(el=>rvObs.observe(el));
+
+/* ---------- Marquee: duplicate track for a seamless loop ---------- */
+const mq = $('#mqTrack');
+mq.innerHTML += mq.innerHTML;
+
+/* ---------- Animated counters ---------- */
+const fmt = (v,d)=> d>0 ? v.toFixed(d) : Math.round(v).toLocaleString('en-US');
+const ctObs = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(!en.isIntersecting) return;
+    const el = en.target, end = parseFloat(el.dataset.count),
+          d = +(el.dataset.decimals||0), suf = el.dataset.suffix||'';
+    ctObs.unobserve(el);
+    if(RM){ el.innerHTML = fmt(end,d) + '<em>'+suf+'</em>'; return; }
+    const t0 = performance.now(), dur = 1700;
+    (function fr(n){
+      const p = Math.min((n-t0)/dur, 1), e = 1-Math.pow(1-p,3);
+      el.innerHTML = fmt(end*e,d) + '<em>'+suf+'</em>';
+      if(p<1) requestAnimationFrame(fr);
+    })(t0);
+  });
+},{threshold:.4});
+ $$('[data-count]').forEach(el=>ctObs.observe(el));
+
+/* =================================================================
+   HERO CANVAS — the convergence field.
+   Responsive: orbit re-centers/re-scales per breakpoint, particle
+   count and label size scale with viewport. Touch drag repels too.
+   ================================================================= */
+(function(){
+  const cv = $('#converge'); if(!cv) return;
+  const ctx = cv.getContext('2d');
+  const hero = cv.parentElement;
+  const pointer = {x:-9999, y:-9999};
+  const LABELS = ['CRM','MAIL','DOCS','DB','PAY','CHAT','GIT','SHEETS','CAL','FILES','API','BI','AUTH','TASKS','CDN','ERP','SSH','VAULT'];
+  const BLUES   = ['#60A5FA','#3B82F6','#93C5FD','#7DA9FA'];
+  const PURPLES = ['#A78BFA','#8B5CF6','#C4B5FD'];
+  const pick = a => a[Math.floor(Math.random()*a.length)];
+  let W=0,H=0,DPR=1,cx=0,cy=0,R=150,visible=true,rafId=null,last=0,labelFont='10px "Roboto Mono", monospace';
+  let pulses=[], lastPulse=0;
+  const P=[]; let N = window.innerWidth < 640 ? 40 : (window.innerWidth < 1024 ? 52 : 64);
+
+  function resize(){
+    const r = hero.getBoundingClientRect();
+    W = r.width; H = r.height;
+    DPR = Math.min(window.devicePixelRatio||1, 2);
+    cv.width = W*DPR; cv.height = H*DPR;
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    if(W < 860){
+      // MOBILE: text on top → orbit centered horizontally, in the lower band
+      cx = W*0.5;
+      cy = H - Math.min(W*0.62, Math.min(380, H*0.55));
+      R  = Math.max(78,  Math.min(128, W*0.34));
+      labelFont = '9px "Roboto Mono", monospace';
+    } else {
+      cx = W*0.66; cy = H*0.5;
+      R  = Math.max(120, Math.min(190, Math.min(W,H)*0.27));
+      labelFont = '10px "Roboto Mono", monospace';
+    }
+    // keep orbiting particles within the (possibly changed) ring
+    for(const p of P) if(p.state==='orbit') p.baseA = p.baseA % (Math.PI*2);
+  }
+
+  function spawn(p){
+    p.state='fly'; p.t=0; p.dur=1500+Math.random()*1500;
+    const side = Math.floor(Math.random()*4);
+    if(side===0){ p.sx=Math.random()*W; p.sy=-30; }
+    else if(side===1){ p.sx=W+30; p.sy=Math.random()*H; }
+    else if(side===2){ p.sx=Math.random()*W; p.sy=H+30; }
+    else { p.sx=-30; p.sy=Math.random()*H; }
+    p.baseA = Math.random()*Math.PI*2;
+    p.color = Math.random()<0.22 ? pick(PURPLES) : pick(BLUES);
+    p.label = pick(LABELS);
+    p.wob = Math.random()*Math.PI*2;
+    p.spd = (0.00028+Math.random()*0.00028) * (Math.random()<0.88?1:-1);
+    p.life = 6500+Math.random()*5500;
+    p.px = p.sx; p.py = p.sy;
+    const mx=(p.sx+cx)/2, my=(p.sy+cy)/2, dx=cx-p.sx, dy=cy-p.sy, len=Math.hypot(dx,dy)||1;
+    const off=(Math.random()-0.5)*220;
+    p.c1x = mx + (-dy/len)*off; p.c1y = my + (dx/len)*off;
+  }
+
+  const ease = t => t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+
+  function frame(now){
+    rafId = requestAnimationFrame(frame);
+    const dt = Math.min(now-last, 50); last = now;
+    ctx.clearRect(0,0,W,H);
+
+    // --- pulse rings from the core ---
+    if(now-lastPulse > 2800){ pulses.push({r:30}); lastPulse=now; }
+    pulses = pulses.filter(pl=>{
+      pl.r += dt*0.06;
+      const a = 0.3*(1-(pl.r-30)/260);
+      if(a<=0) return false;
+      ctx.beginPath(); ctx.arc(cx,cy,pl.r,0,7);
+      ctx.strokeStyle='rgba(96,165,250,'+a.toFixed(3)+')'; ctx.lineWidth=1; ctx.stroke();
+      return true;
+    });
+
+    // --- update + collect orbiting particles ---
+    const orbiters=[];
+    for(const p of P){
+      let x,y,alpha;
+      if(p.state==='fly'){
+        p.t += dt/p.dur;
+        const t = Math.min(p.t,1), e = ease(t), u = 1-e;
+        const ex = cx+Math.cos(p.baseA)*R, ey = cy+Math.sin(p.baseA)*R;
+        x = u*u*p.sx + 2*u*e*p.c1x + e*e*ex;
+        y = u*u*p.sy + 2*u*e*p.c1y + e*e*ey;
+        alpha = Math.sin(t*Math.PI);
+        if(p.t>=1){ p.state='orbit'; p.orb=now; }
+        ctx.beginPath(); ctx.moveTo(p.px,p.py); ctx.lineTo(x,y);
+        ctx.strokeStyle=p.color; ctx.globalAlpha=alpha*0.4; ctx.lineWidth=1.2; ctx.stroke();
+      } else {
+        const e = now-p.orb;
+        if(e > p.life){ spawn(p); continue; }
+        p.baseA += p.spd*dt;
+        const rr = R + Math.sin(now*0.001+p.wob)*10;
+        x = cx+Math.cos(p.baseA)*rr; y = cy+Math.sin(p.baseA)*rr;
+        alpha = Math.min(Math.min(e/400,1), Math.min((p.life-e)/1000,1));
+        orbiters.push({p,x,y,alpha});
+      }
+      // pointer (finger or cursor) repels nearby orbiting particles
+      const md = Math.hypot(x-pointer.x, y-pointer.y);
+      if(md < 120 && md > 0.01){
+        const f = (1-md/120)*24;
+        x += (x-pointer.x)/md*f; y += (y-pointer.y)/md*f;
+      }
+      ctx.globalAlpha = alpha*(p.state==='orbit'?1:0.8);
+      ctx.beginPath(); ctx.arc(x,y,p.state==='orbit'?3:2.5,0,7);
+      ctx.fillStyle=p.color; ctx.fill();
+      ctx.globalAlpha = alpha*(p.state==='orbit'?0.55:0.3);
+      ctx.fillStyle='#94A3B8'; ctx.font=labelFont; ctx.textAlign='center';
+      ctx.fillText(p.label, x, y-9);
+      ctx.globalAlpha=1;
+      p.px=x; p.py=y;
+    }
+
+    // --- spokes: each orbiting tool is wired to the core ---
+    for(const o of orbiters){
+      ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(o.x,o.y);
+      ctx.strokeStyle=o.p.color; ctx.globalAlpha=o.alpha*0.13; ctx.lineWidth=1; ctx.stroke();
+    }
+    // --- faint chords between adjacent tools ---
+    for(let i=0;i<orbiters.length;i++) for(let j=i+1;j<orbiters.length;j++){
+      const a=orbiters[i], b=orbiters[j];
+      let da=Math.abs(a.p.baseA-b.p.baseA)%(Math.PI*2);
+      if(da>Math.PI) da=Math.PI*2-da;
+      if(da<0.42){
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+        ctx.strokeStyle='#60A5FA'; ctx.globalAlpha=0.07; ctx.lineWidth=1; ctx.stroke();
+      }
+    }
+    ctx.globalAlpha=1;
+
+    // --- the core: breathing gradient disc + rotating dashed ring ---
+    const breathe = Math.sin(now*0.0022)*1.6;
+    const coreR = W<860 ? 19 : 24;
+    ctx.beginPath(); ctx.arc(cx,cy,coreR+32,0,7);
+    ctx.strokeStyle='rgba(96,165,250,.15)'; ctx.lineWidth=1; ctx.stroke();
+    ctx.save();
+    ctx.setLineDash([2,7]); ctx.lineDashOffset = -now*0.02;
+    ctx.beginPath(); ctx.arc(cx,cy,coreR+22,0,7);
+    ctx.strokeStyle='rgba(167,139,250,.55)'; ctx.lineWidth=1.4; ctx.stroke();
+    ctx.restore();
+    const g = ctx.createLinearGradient(cx-24,cy-24,cx+24,cy+24);
+    g.addColorStop(0,'#1D4ED8'); g.addColorStop(1,'#7C3AED');
+    ctx.beginPath(); ctx.arc(cx,cy,coreR+breathe,0,7); ctx.fillStyle=g; ctx.fill();
+    ctx.fillStyle='rgba(255,255,255,.95)';
+    ctx.font='600 '+(W<860?14:17)+'px "Space Grotesk", sans-serif';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('E', cx, cy+1+breathe*0.3);
+    ctx.textBaseline='alphabetic';
+  }
+
+  function start(){ if(rafId===null && visible && !document.hidden){ last=performance.now(); rafId=requestAnimationFrame(frame); } }
+  function stop(){ if(rafId!==null){ cancelAnimationFrame(rafId); rafId=null; } }
+
+  // mouse
+  hero.addEventListener('mousemove', e=>{
+    const r = cv.getBoundingClientRect();
+    pointer.x = e.clientX-r.left; pointer.y = e.clientY-r.top;
+  });
+  hero.addEventListener('mouseleave', ()=>{ pointer.x=-9999; pointer.y=-9999; });
+  // touch: let the field react to fingers, without blocking page scroll
+  hero.addEventListener('touchmove', e=>{
+    const r = cv.getBoundingClientRect(), t = e.touches[0];
+    pointer.x = t.clientX-r.left; pointer.y = t.clientY-r.top;
+  }, {passive:true});
+  hero.addEventListener('touchend', ()=>{ pointer.x=-9999; pointer.y=-9999; }, {passive:true});
+
+  let rszT;
+  window.addEventListener('resize', ()=>{
+    clearTimeout(rszT);
+    rszT = setTimeout(()=>{ resize(); if(RM) drawStatic(); }, 120);
+  });
+
+  new IntersectionObserver(en=>{
+    visible = en[0].isIntersecting;
+    visible ? start() : stop();
+  },{threshold:0}).observe(hero);
+  document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
+
+  function drawStatic(){
+    ctx.clearRect(0,0,W,H);
+    for(const p of P){
+      const x=cx+Math.cos(p.baseA)*R, y=cy+Math.sin(p.baseA)*R;
+      ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(x,y);
+      ctx.strokeStyle=p.color; ctx.globalAlpha=.13; ctx.lineWidth=1; ctx.stroke();
+      ctx.globalAlpha=1; ctx.beginPath(); ctx.arc(x,y,3,0,7); ctx.fillStyle=p.color; ctx.fill();
+    }
+  }
+
+  resize();
+  for(let i=0;i<N;i++){ const p={}; spawn(p); P.push(p); }
+  if(RM){ P.forEach(p=>{ p.state='orbit'; p.orb=0; p.life=Infinity; }); drawStatic(); }
+  else start();
+})();
+
+/* ---------- FLOW panel: animated pipeline run ---------- */
+(function(){
+  const path=$('#flowPath'), dot=$('#flowDot'), status=$('#flowStatus');
+  const nodes=[$('#fn1'),$('#fn2'),$('#fn3')], btn=$('#flowRun');
+  if(!path) return;
+  const L=path.getTotalLength();
+  let busy=false, timer=null, visible=false;
+
+  function setNodes(on1,on2,on3){
+    nodes[0].classList.toggle('active',on1);
+    nodes[1].classList.toggle('active',on2);
+    nodes[2].classList.toggle('active',on3);
+  }
+  function run(){
+    if(busy) return; busy=true;
+    setNodes(true,false,false);
+    status.textContent='STATUS · RUNNING…'; status.className='flow-status mono run';
+    dot.setAttribute('opacity','1');
+    const ms = 180+Math.floor(Math.random()*90);
+    const t0 = performance.now(), dur = RM ? 1 : 1500;
+    (function fr(n){
+      const t = Math.min((n-t0)/dur,1);
+      const e = t<.5 ? 2*t*t : 1-Math.pow(-2*t+2,2)/2;
+      const pt = path.getPointAtLength(e*L);
+      dot.setAttribute('cx',pt.x); dot.setAttribute('cy',pt.y);
+      setNodes(true, e>0.45, e>0.97);
+      if(t<1) requestAnimationFrame(fr);
+      else{
+        status.textContent='✓ COMPLETE · '+ms+'MS'; status.className='flow-status mono done';
+        setTimeout(()=>{
+          dot.setAttribute('opacity','0'); setNodes(false,false,false);
+          status.textContent='STATUS · READY'; status.className='flow-status mono';
+          busy=false;
+        },1600);
+      }
+    })(t0);
+  }
+  btn.addEventListener('click', run);
+  new IntersectionObserver(en=>{
+    visible = en[0].isIntersecting;
+    if(visible && !timer && !RM) timer = setInterval(run, 4600);
+    if(!visible && timer){ clearInterval(timer); timer=null; }
+  },{threshold:.3}).observe($('#flowSvg'));
+})();
+
+/* ---------- PULSE panel: live chart (redraws on resize) ---------- */
+(function(){
+  const c=$('#pulseChart'); if(!c) return;
+  const ctx=c.getContext('2d');
+  let W=0,H=0,DPR=1,visible=false,last=0,raf=null;
+  const data=[]; let v=50;
+  for(let i=0;i<64;i++){ v=Math.max(12,Math.min(88, v+(Math.random()-0.48)*7)); data.push(v); }
+
+  function resize(){
+    const r=c.getBoundingClientRect(); W=r.width; H=r.height;
+    if(!W) return;
+    DPR=Math.min(window.devicePixelRatio||1,2);
+    c.width=W*DPR; c.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+    if(RM) draw(0);
+  }
+  function draw(now){
+    raf = visible ? requestAnimationFrame(draw) : null;
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle='rgba(15,23,42,.06)'; ctx.lineWidth=1;
+    for(let i=1;i<4;i++){ ctx.beginPath(); ctx.moveTo(0,H*i/4); ctx.lineTo(W,H*i/4); ctx.stroke(); }
+    const px=i=>i/(data.length-1)*W, py=val=>H-(val/100)*(H-14)-7;
+    ctx.beginPath(); ctx.moveTo(px(0),py(data[0]));
+    for(let i=1;i<data.length-1;i++){
+      const mx=(px(i)+px(i+1))/2, my=(py(data[i])+py(data[i+1]))/2;
+      ctx.quadraticCurveTo(px(i),py(data[i]),mx,my);
+    }
+    ctx.lineTo(px(data.length-1),py(data[data.length-1]));
+    ctx.strokeStyle='#1D4ED8'; ctx.lineWidth=2; ctx.lineJoin='round'; ctx.stroke();
+    ctx.lineTo(W,H); ctx.lineTo(0,H); ctx.closePath();
+    const g=ctx.createLinearGradient(0,0,0,H);
+    g.addColorStop(0,'rgba(29,78,216,.16)'); g.addColorStop(1,'rgba(29,78,216,0)');
+    ctx.fillStyle=g; ctx.fill();
+    const hx=px(data.length-1), hy=py(data[data.length-1]);
+    ctx.beginPath(); ctx.arc(hx,hy,3,0,7); ctx.fillStyle='#7C3AED'; ctx.fill();
+    ctx.beginPath(); ctx.arc(hx,hy,6+Math.sin(now*0.005)*2,0,7);
+    ctx.strokeStyle='rgba(124,58,237,.4)'; ctx.lineWidth=1; ctx.stroke();
+  }
+  function step(){
+    v=Math.max(12,Math.min(88, v+(Math.random()-0.48)*8));
+    data.push(v); data.shift();
+    $('#pulseVal').textContent='P99 · '+(180+Math.floor(Math.random()*60))+'MS';
+  }
+  new IntersectionObserver(en=>{
+    visible=en[0].isIntersecting;
+    if(visible && !raf){ resize(); last=performance.now(); raf=requestAnimationFrame(draw); }
+    if(!visible && raf){ cancelAnimationFrame(raf); raf=null; }
+  },{threshold:.2}).observe(c);
+  window.addEventListener('resize', resize);
+  if(RM){ resize(); } else setInterval(step, 320);
+})();
+
+/* ---------- VAULT panel: terminal typing loop ---------- */
+(function(){
+  const el=$('#typerText'); if(!el) return;
+  const LINES=[
+    {c:'vault.query("unified.orders · 240 sources")'},
+    {ok:'✓ 4,812,903 rows · 12ms · seamless'},
+    {c:'vault.sync(workspace: "all")'},
+    {ok:'✓ schema converged · zero migration'},
+    {c:'vault.scale(tenant: "you")'},
+    {ok:'✓ infinite headroom · always up-to-date'}
+  ];
+  let visible=false, timer=null;
+  function play(){
+    let li=0;
+    function nextLine(){
+      if(!visible){ timer=setTimeout(nextLine,800); return; }
+      if(li>=LINES.length){ el.innerHTML=''; li=0; timer=setTimeout(nextLine,2400); return; }
+      const line=LINES[li++], span=document.createElement('span');
+      span.className=line.c?'':'tl-ok';
+      el.appendChild(span);
+      const text=line.c||line.ok; let ci=0;
+      (function typeChar(){
+        if(!visible){ timer=setTimeout(typeChar,400); return; }
+        span.textContent=text.slice(0,++ci);
+        if(ci<text.length) timer=setTimeout(typeChar, line.c?26:12);
+        else { el.appendChild(document.createTextNode('\n')); timer=setTimeout(nextLine, line.c?450:800); }
+      })();
+    }
+    nextLine();
+  }
+  new IntersectionObserver(en=>{ visible=en[0].isIntersecting; },{threshold:.2}).observe($('#typer'));
+  play();
+})();
+
+/* ---------- MESH panel: linkable source chips ---------- */
+(function(){
+  const chips=$('#chips'), count=$('#meshCount'); if(!chips) return;
+  function update(){
+    const on=chips.querySelectorAll('.chip.on').length;
+    count.innerHTML='<b>'+(174+on)+'</b> / 240 SOURCES LINKED';
+  }
+  chips.addEventListener('click', e=>{
+    const chip=e.target.closest('.chip'); if(!chip) return;
+    chip.classList.toggle('on');
+    chip.classList.remove('pop'); void chip.offsetWidth; chip.classList.add('pop');
+    update();
+    toast(chip.classList.contains('on')
+      ? chip.textContent.trim()+' linked — every module inherited it instantly.'
+      : chip.textContent.trim()+' unlinked.');
+  });
+  update();
+})();
+
+/* ---------- ID panel: SSO switch ---------- */
+(function(){
+  const sw=$('#idSwitch'), sub=$('#idSub'); if(!sw) return;
+  sw.addEventListener('click', ()=>{
+    const on = sw.getAttribute('aria-checked')!=='true';
+    sw.setAttribute('aria-checked', String(on));
+    sub.textContent = on ? '3 POLICIES ACTIVE · SOC 2 READY' : 'PASSWORD AUTH ONLY';
+    sub.style.color = on ? 'var(--purple)' : '';
+  });
+})();
+
+/* ---------- Testimonials rotator (buttons + dots + touch swipe) ---------- */
+(function(){
+  const T=[
+    {q:'We replaced six subscriptions and two integration engineers with EKTAZECT. Onboarding a new tool used to take a sprint — now it takes a click.', n:'Priya Raman', r:'COO · NORTHBEAM LOGISTICS', s:'ektazect-p1'},
+    {q:'The first platform that scaled with us instead of against us. We started as three people; we\u2019re 400 now, and nothing ever had to be migrated.', n:'Jonas Weber', r:'CTO · HELIO LABS', s:'ektazect-p2'},
+    {q:'Our data finally speaks one language. EKTAZECT didn\u2019t just connect our tools — it converged how our teams think.', n:'Amara Diallo', r:'HEAD OF OPS · FIELDER & CO.', s:'ektazect-p3'}
+  ];
+  const slide=$('#tSlide'), stage=$('#qStage'), dots=$('#tDots'); if(!slide) return;
+  let i=0, timer=null;
+  T.forEach((_,k)=>{
+    const b=document.createElement('button');
+    b.className='t-dot'; b.setAttribute('aria-label','Show quote '+(k+1));
+    b.addEventListener('click',()=>{ go(k); restart(); });
+    dots.appendChild(b);
+  });
+  function render(){
+    $('#tQuote').textContent=T[i].q;
+    $('#tName').textContent=T[i].n;
+    $('#tRole').textContent=T[i].r;
+    const img=$('#tImg'); img.src='https://picsum.photos/seed/'+T[i].s+'/120/120.jpg'; img.alt='Portrait of '+T[i].n;
+    dots.querySelectorAll('.t-dot').forEach((d,k)=>d.classList.toggle('on',k===i));
+  }
+  function go(k){
+    slide.classList.add('out');
+    setTimeout(()=>{ i=(k+T.length)%T.length; render(); slide.classList.remove('out'); }, RM?0:280);
+  }
+  function restart(){ if(timer) clearInterval(timer); if(!RM) timer=setInterval(()=>go(i+1), 6500); }
+  $('#tPrev').addEventListener('click',()=>{ go(i-1); restart(); });
+  $('#tNext').addEventListener('click',()=>{ go(i+1); restart(); });
+  $('#quotes').addEventListener('mouseenter',()=>timer&&clearInterval(timer));
+  $('#quotes').addEventListener('mouseleave',restart);
+  // swipe support for touch devices
+  let sx=null, sy=null;
+  stage.addEventListener('touchstart', e=>{
+    sx=e.touches[0].clientX; sy=e.touches[0].clientY;
+    timer&&clearInterval(timer);
+  }, {passive:true});
+  stage.addEventListener('touchend', e=>{
+    if(sx===null) return;
+    const dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy;
+    if(Math.abs(dx)>48 && Math.abs(dx)>Math.abs(dy)){ dx<0 ? go(i+1) : go(i-1); }
+    restart(); sx=null; sy=null;
+  }, {passive:true});
+  render(); restart();
+})();
+
+
+/* ---------- Pricing toggle ---------- */
+(function(){
+  const sw=$('#billSw'); if(!sw) return;
+  sw.addEventListener('click',()=>{
+    const y=sw.getAttribute('aria-checked')!=='true';
+    sw.setAttribute('aria-checked',String(y));
+    const b=$('.plan b[data-m]'); b.textContent='$'+(y?b.dataset.y:b.dataset.m);
+    $('#gNote').textContent=y?'Billed yearly':'Billed monthly';
+    $('#bM').classList.toggle('on',!y); $('#bY').classList.toggle('on',y);
+  });
+  $$('[data-plan]').forEach(b=>b.addEventListener('click',()=>toast(b.dataset.plan+' plan selected. (Demo build)')));
+})();
+
+/* ---------- Team accordion (one open at a time) ---------- */
+ $$('.team-item').forEach(item=>{
+  item.querySelector('.team-head').addEventListener('click', ()=>{
+    const wasOpen = item.classList.contains('open');
+    $$('.team-item').forEach(x=>{ x.classList.remove('open'); x.querySelector('.team-head').setAttribute('aria-expanded','false'); });
+    if(!wasOpen){ item.classList.add('open'); item.querySelector('.team-head').setAttribute('aria-expanded','true'); }
+  });
+});
+
+/* ---------- FAQ accordion ---------- */
+ $$('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click', ()=>{
+    const open = item.classList.toggle('open');
+    item.querySelector('.faq-q').setAttribute('aria-expanded', String(open));
+  });
+});
+
+/* ---------- CTA + newsletter ---------- */
+ $('#ctaStart').addEventListener('click', ()=>toast('Sandbox requested — your invite is on its way. (Demo build)'));
+ $('#ctaDemo').addEventListener('click', ()=>toast('Demo request noted — our team converges on you shortly. (Demo build)'));
+
+ $('#nlForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const input=$('#nlEmail'), val=input.value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)){
+    toast('That email doesn\u2019t look quite right — try again.', 'err');
+    input.classList.add('shake'); setTimeout(()=>input.classList.remove('shake'),450);
+    return;
+  }
+  toast('You\u2019re on the list. Welcome to the ecosystem.');
+  input.value='';
+});
+</script>
+</body>
+</html>

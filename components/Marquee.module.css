@@ -1,0 +1,62 @@
+.marqueeSec {
+  border-bottom: 1px solid var(--dark-line);
+  padding: 22px 0;
+  overflow: hidden;
+}
+
+.marqueeLabel {
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--slate-light);
+  margin-bottom: 16px;
+}
+
+.marqueeWrap {
+  overflow: hidden;
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: mq 30s linear infinite;
+}
+
+.marqueeTrack:hover {
+  animation-play-state: paused;
+}
+
+.item {
+  font-family: var(--font-roboto-mono), monospace;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: var(--slate);
+  padding: 0 26px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.item::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--purple);
+  opacity: 0.55;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+@keyframes mq {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 560px) {
+  .item {
+    font-size: 12.5px;
+    padding: 0 18px;
+  }
+}

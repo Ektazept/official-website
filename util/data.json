@@ -1,0 +1,384 @@
+{
+  "organization": {
+    "name": "EKTAZECT",
+    "tagline": "The Unified SaaS Ecosystem",
+    "description": "The Unified SaaS Ecosystem. All your workflows, data, and tools — one intelligent platform.",
+    "copyright": "© 2026 EKTAZECT, INC. — THE UNIFIED SAAS ECOSYSTEM",
+    "heroHeadline": "Every tool you rely on.",
+    "heroHeadlineAccent": "Converged into one.",
+    "heroSub": "EKTAZECT unifies your apps, your data, and your people in a single ecosystem — one that scales seamlessly from a team of one to the enterprise, and never asks you to migrate again.",
+    "heroMeta": "NO CREDIT CARD · 240+ NATIVE INTEGRATIONS · FREE UP TO 5 SEATS",
+    "vision": "To be the central operating system for the modern world — where all digital workflows, data, and tools converge into one intelligent platform.",
+    "mission": "To eliminate software fragmentation by providing an ever-expanding, unified SaaS ecosystem that scales seamlessly with any individual, team, or enterprise.",
+    "brandEssence": "Infinite scalability through absolute unity.",
+    "ctaHeadline": "Ready to converge?",
+    "ctaSub": "Join 12,400+ teams running their entire stack on EKTAZECT. Set up in minutes — scale forever.",
+    "ctaMicro": "SETUP IN MINUTES · NO MIGRATION · CANCEL ANYTIME",
+    "newsletterTitle": "The Convergence Brief",
+    "newsletterSub": "One email a month on unifying your stack. No noise, ever.",
+    "social": {
+      "x": "https://x.com/ektazect",
+      "github": "https://github.com/Ektazept",
+      "linkedin": "https://linkedin.com/company/ektazept"
+    }
+  },
+  "members": [
+    {
+      "id": 1,
+      "name": "Hasitha Sandakelum",
+      "role": "Founder & Chief Architect",
+      "tags": "DISTRIBUTED SYSTEMS · API DESIGN",
+      "seed": "ektazect-hasitha",
+      "bio": "Hasitha spent years building distributed platforms before concluding the real problem was never scale — it was the seams between systems. He wrote the first line of EKTAZECT's kernel and still reviews every API contract personally. His rule: if a feature can't explain itself to a first-time user, it ships again.",
+      "social": {
+        "x": "https://x.com/DevSandakelum",
+        "github": "https://github.com/dev-sandakelum",
+        "linkedin": "https://linkedin.com/in/hasitha-sandakelum"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Vishwa Pramuditha",
+      "role": "Founder & VP of Engineering",
+      "tags": "RELIABILITY · KUBERNETES",
+      "seed": "ektazect-vishwa",
+      "bio": "Vishwa keeps billions of daily workflows flowing at 99.99% uptime. He previously ran reliability for a global payments network and treats every millisecond as a promise. His team's on-call rotation is famously, almost suspiciously, quiet.",
+      "social": {
+        "x": "https://x.com/vishwa_pramuditha",
+        "github": "https://github.com/VishwaX2004",
+        "linkedin": "https://www.linkedin.com/in/vishwa-pramuditha"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Dasindu Dilvan",
+      "role": "Founder & Head of Design Systems",
+      "tags": "DESIGN SYSTEMS · MOTION",
+      "seed": "ektazect-dasindu",
+      "bio": "Dasindu believes convergence should feel effortless, not engineered. He built EKTAZECT's design system around a single rule — one interface language for every module — and obsesses over the details most people feel but never notice.",
+      "social": {
+        "x": "https://x.com/dasindu_dilvan",
+        "github": "https://github.com/DasinduDilvan",
+        "linkedin": "https://www.linkedin.com/in/dasindudilvan"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Amjad Hassan",
+      "role": "Founder & Lead, Data & Intelligence",
+      "tags": "STREAMING · RUST · ML",
+      "seed": "ektazect-amjad",
+      "bio": "Amjad leads the data and intelligence group, turning raw event streams into answers before you finish asking the question. He's the reason Pulse renders in real time and Vault has never lost a row. Rust, streams, and strong coffee.",
+      "social": {
+        "x": "https://x.com/amjad_hassan",
+        "github": "https://github.com/nextgeneratio",
+        "linkedin": "https://www.linkedin.com/in/amjad-hasan-301390250/"
+      }
+    }
+  ],
+  "stats": [
+    {
+      "count": 12400,
+      "suffix": "+",
+      "label": "TEAMS CONVERGED"
+    },
+    {
+      "count": 240,
+      "suffix": "+",
+      "label": "NATIVE INTEGRATIONS"
+    },
+    {
+      "count": 4.8,
+      "decimals": 1,
+      "suffix": "B",
+      "label": "DAILY WORKFLOWS"
+    },
+    {
+      "count": 99.99,
+      "decimals": 2,
+      "suffix": "%",
+      "label": "UPTIME SLA"
+    }
+  ],
+  "integrations": [
+    "SLACK",
+    "GITHUB",
+    "NOTION",
+    "SALESFORCE",
+    "STRIPE",
+    "LINEAR",
+    "FIGMA",
+    "JIRA",
+    "GMAIL",
+    "ZOOM",
+    "HUBSPOT",
+    "SNOWFLAKE",
+    "POSTGRES",
+    "S3",
+    "ZENDESK",
+    "ASANA"
+  ],
+  "modules": [
+    {
+      "id": "flow",
+      "idx": "MOD·01",
+      "name": "Flow",
+      "desc": "Workflow automation across every module. Trigger once — Flow routes it, transforms it, and acts on it everywhere."
+    },
+    {
+      "id": "pulse",
+      "idx": "MOD·02",
+      "name": "Pulse",
+      "desc": "Realtime analytics over your unified data — no pipelines to babysit, no dashboards to stitch."
+    },
+    {
+      "id": "vault",
+      "idx": "MOD·03",
+      "name": "Vault",
+      "desc": "One data layer for every source. Query it all as if it were one database."
+    },
+    {
+      "id": "id",
+      "idx": "MOD·04",
+      "name": "ID",
+      "desc": "Identity and access, unified across the entire ecosystem."
+    },
+    {
+      "id": "mesh",
+      "idx": "MOD·05",
+      "name": "Mesh",
+      "desc": "The integration fabric. Connect a source once — every module inherits it instantly. Tap a chip to link it."
+    }
+  ],
+  "meshChips": [
+    {
+      "label": "SLACK",
+      "on": true
+    },
+    {
+      "label": "GITHUB",
+      "on": true
+    },
+    {
+      "label": "NOTION",
+      "on": true
+    },
+    {
+      "label": "STRIPE",
+      "on": false
+    },
+    {
+      "label": "LINEAR",
+      "on": false
+    },
+    {
+      "label": "ZOOM",
+      "on": false
+    },
+    {
+      "label": "FIGMA",
+      "on": false
+    },
+    {
+      "label": "JIRA",
+      "on": false
+    },
+    {
+      "label": "GMAIL",
+      "on": false
+    },
+    {
+      "label": "SALESFORCE",
+      "on": false
+    }
+  ],
+  "testimonials": [
+    {
+      "q": "We replaced six subscriptions and two integration engineers with EKTAZECT. Onboarding a new tool used to take a sprint — now it takes a click.",
+      "name": "Priya Raman",
+      "role": "COO · NORTHBEAM LOGISTICS",
+      "seed": "ektazect-p1"
+    },
+    {
+      "q": "The first platform that scaled with us instead of against us. We started as three people; we're 400 now, and nothing ever had to be migrated.",
+      "name": "Jonas Weber",
+      "role": "CTO · HELIO LABS",
+      "seed": "ektazect-p2"
+    },
+    {
+      "q": "Our data finally speaks one language. EKTAZECT didn't just connect our tools — it converged how our teams think.",
+      "name": "Amara Diallo",
+      "role": "HEAD OF OPS · FIELDER & CO.",
+      "seed": "ektazect-p3"
+    }
+  ],
+  "pricing": [
+    {
+      "name": "Starter",
+      "desc": "For individuals and small teams getting connected.",
+      "priceM": null,
+      "priceY": null,
+      "priceLabel": "$0",
+      "priceSub": "/ forever",
+      "priceNote": "Up to 5 users",
+      "features": [
+        "EKTAZECT Flow & Pulse",
+        "10 linked sources",
+        "Community support"
+      ],
+      "btnVariant": "ghost",
+      "btnLabel": "Start free",
+      "popular": false
+    },
+    {
+      "name": "Growth",
+      "desc": "For scaling teams that need every module, unified.",
+      "priceM": 29,
+      "priceY": 23,
+      "priceLabel": null,
+      "priceSub": "/ user / month",
+      "priceNote": null,
+      "features": [
+        "All five modules",
+        "Up to 240 linked sources",
+        "SSO & audit logs",
+        "Priority support"
+      ],
+      "btnVariant": "grad",
+      "btnLabel": "Start 14-day trial",
+      "popular": true
+    },
+    {
+      "name": "Enterprise",
+      "desc": "For organizations with advanced security and scale needs.",
+      "priceM": null,
+      "priceY": null,
+      "priceLabel": "Custom",
+      "priceSub": null,
+      "priceNote": "Volume pricing",
+      "features": [
+        "Unlimited sources & users",
+        "SOC 2 reports & custom SLAs",
+        "Dedicated success manager"
+      ],
+      "btnVariant": "primary",
+      "btnLabel": "Talk to sales",
+      "popular": false
+    }
+  ],
+  "faq": [
+    {
+      "q": "What exactly is EKTAZECT?",
+      "a": "EKTAZECT is a unified SaaS ecosystem: one platform where your apps, data, workflows, and identity live together instead of in separate tools. Start with one module — Flow, Pulse, Vault, Mesh, or ID — and the rest connect automatically through a shared data layer."
+    },
+    {
+      "q": "Do I need to migrate my existing tools?",
+      "a": "No. Mesh links 240+ sources in a tap, and every connection is inherited by all modules instantly. Most teams converge in an afternoon — and nothing gets moved, copied, or locked in."
+    },
+    {
+      "q": "How does pricing scale with my team?",
+      "a": "Modular, like the product. It's free up to 5 seats, then you pay per active module — not per integration, not per workflow. As you grow, unit costs go down, never up. A small business and an enterprise run the exact same platform."
+    },
+    {
+      "q": "Is EKTAZECT enterprise-ready?",
+      "a": "Yes — SSO and SCIM through EKTAZECT ID, streaming audit logs, a 99.99% uptime SLA, and SOC 2 compliance. The same infrastructure carries 4.8 billion workflows a day for teams of every size."
+    },
+    {
+      "q": "I'm a team of one. Is this overkill?",
+      "a": "Not at all — EKTAZECT is built to be powerful enough for enterprise developers and accessible enough for a first-time user. Many of our best workflows were designed by solo founders. You'll never outgrow it, because growth is the whole point."
+    }
+  ],
+  "nav": [
+    {
+      "href": "#ecosystem",
+      "label": "Ecosystem"
+    },
+    {
+      "href": "#vision",
+      "label": "Vision"
+    },
+    {
+      "href": "#team",
+      "label": "Team"
+    },
+    {
+      "href": "#pricing",
+      "label": "Pricing"
+    },
+    {
+      "href": "#faq",
+      "label": "FAQ"
+    }
+  ],
+  "footerProduct": [
+    {
+      "label": "EKTAZECT Flow",
+      "href": "#ecosystem"
+    },
+    {
+      "label": "EKTAZECT Pulse",
+      "href": "#ecosystem"
+    },
+    {
+      "label": "EKTAZECT Vault",
+      "href": "#ecosystem"
+    },
+    {
+      "label": "EKTAZECT Mesh",
+      "href": "#ecosystem"
+    },
+    {
+      "label": "EKTAZECT ID",
+      "href": "#ecosystem"
+    }
+  ],
+  "footerCompany": [
+    {
+      "label": "Vision & Mission",
+      "href": "#vision",
+      "toast": null
+    },
+    {
+      "label": "Team",
+      "href": "#team",
+      "toast": null
+    },
+    {
+      "label": "Pricing",
+      "href": "#pricing",
+      "toast": null
+    },
+    {
+      "label": "Careers",
+      "href": "#",
+      "toast": "Careers page isn't part of this demo — but we're hiring in spirit."
+    },
+    {
+      "label": "Press kit",
+      "href": "#",
+      "toast": "Press kit isn't part of this demo."
+    }
+  ],
+  "footerResources": [
+    {
+      "label": "Documentation",
+      "href": "#",
+      "toast": "Documentation isn't part of this demo."
+    },
+    {
+      "label": "API Reference",
+      "href": "#",
+      "toast": "API reference isn't part of this demo."
+    },
+    {
+      "label": "Changelog",
+      "href": "#",
+      "toast": "Changelog isn't part of this demo."
+    },
+    {
+      "label": "FAQ",
+      "href": "#faq",
+      "toast": null
+    }
+  ]
+}

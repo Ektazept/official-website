@@ -1,0 +1,77 @@
+.cta {
+  background: transparent;
+  color: #fff;
+  padding: calc(var(--sec-pad) - 4px) 0 calc(var(--sec-pad) - 24px);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.ctaWord {
+  position: absolute;
+  left: 50%;
+  bottom: -0.28em;
+  transform: translateX(-50%);
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-weight: 700;
+  font-size: clamp(64px, 17vw, 240px);
+  letter-spacing: 0.01em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+.cta .container {
+  position: relative;
+  z-index: 2;
+}
+
+.cta h2 {
+  font-size: clamp(32px, 5vw, 58px);
+}
+
+.cta p {
+  color: #b9c4d6;
+  font-size: 17.5px;
+  max-width: 52ch;
+  margin: 20px auto 0;
+}
+
+.ctaBtns {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 38px;
+  flex-wrap: wrap;
+}
+
+.ctaMicro {
+  margin-top: 26px;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--slate-light);
+}
+
+@media (max-width: 860px) {
+  .cta p {
+    font-size: 15.5px;
+  }
+
+  .ctaBtns {
+    margin-top: 30px;
+  }
+
+  .ctaBtns :global(.btn) {
+    flex: 1 1 100%;
+    max-width: 340px;
+  }
+
+  .ctaMicro {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    line-height: 2;
+  }
+}
