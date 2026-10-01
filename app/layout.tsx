@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Roboto_Mono } from "next/font/google";
+import data from "@/util/data.json";
 import "./globals.css";
 
 const inter = Inter({
@@ -21,9 +22,8 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "EKTAZECT — The Unified SaaS Ecosystem",
-  description:
-    "EKTAZECT unifies your apps, data, and people in a single SaaS ecosystem that scales seamlessly — from a team of one to the enterprise.",
+  title: `${data.organization.name} — ${data.organization.tagline}`,
+  description: data.organization.description,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

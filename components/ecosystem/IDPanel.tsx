@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import data from "@/util/data.json";
 import BentoArrow from "./BentoArrow";
 import styles from "./Ecosystem.module.css";
+
+const mod = data.modules.find((m) => m.id === "id")!;
 
 export default function IDPanel() {
   const [ssoOn, setSsoOn] = useState(false);
@@ -10,15 +13,11 @@ export default function IDPanel() {
   return (
     <article className={`${styles.bpanel} ${styles.bId}`}>
       <div className={styles.bTop}>
-        <span className={`${styles.bIdx} mono`}>MOD·04</span>
+        <span className={`${styles.bIdx} mono`}>{mod.idx}</span>
         <BentoArrow />
       </div>
-      <h3 className={styles.bName}>
-        EKTAZECT <b>ID</b>
-      </h3>
-      <p className={styles.bDesc}>
-        Identity and access, unified across the entire ecosystem.
-      </p>
+      <h3 className={styles.bName}>EKTAZECT <b>{mod.name}</b></h3>
+      <p className={styles.bDesc}>{mod.desc}</p>
 
       <div className={styles.switchRow}>
         <div>

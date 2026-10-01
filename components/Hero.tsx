@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import data from "@/util/data.json";
 import styles from "./Hero.module.css";
+
+const { organization: org } = data;
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -144,7 +147,6 @@ export default function Hero() {
         ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(o.x, o.y);
         ctx.strokeStyle = o.p.color; ctx.globalAlpha = o.alpha * 0.13; ctx.lineWidth = 1; ctx.stroke();
       }
-
       for (let i = 0; i < orbiters.length; i++) {
         for (let j = i + 1; j < orbiters.length; j++) {
           let da = Math.abs(orbiters[i].p.baseA - orbiters[j].p.baseA) % (Math.PI * 2);
@@ -178,15 +180,12 @@ export default function Hero() {
 
     function start() {
       if (rafId === null && visible && !document.hidden) {
-        last = performance.now();
-        rafId = requestAnimationFrame(frame);
+        last = performance.now(); rafId = requestAnimationFrame(frame);
       }
     }
-
     function stop() {
       if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
     }
-
     function drawStatic() {
       ctx.clearRect(0, 0, W, H);
       for (const p of P) {
@@ -197,7 +196,6 @@ export default function Hero() {
       }
     }
 
-    // Events
     const onMouseMove = (e: MouseEvent) => {
       const r = cv.getBoundingClientRect();
       pointer.x = e.clientX - r.left; pointer.y = e.clientY - r.top;
@@ -231,13 +229,9 @@ export default function Hero() {
     document.addEventListener("visibilitychange", onVisChange);
 
     resize();
-    for (let i = 0; i < N; i++) {
-      const p = {} as Particle; spawn(p); P.push(p);
-    }
-    if (RM) {
-      P.forEach((p) => { p.state = "orbit"; p.orb = 0; p.life = Infinity; });
-      drawStatic();
-    } else { start(); }
+    for (let i = 0; i < N; i++) { const p = {} as Particle; spawn(p); P.push(p); }
+    if (RM) { P.forEach((p) => { p.state = "orbit"; p.orb = 0; p.life = Infinity; }); drawStatic(); }
+    else start();
 
     return () => {
       stop();
@@ -258,17 +252,13 @@ export default function Hero() {
         <div className={styles.heroInner}>
           <p className="eyebrow" style={{ color: "var(--purple-soft)" }}>
             <span className="eb-dot" />
-            The Unified SaaS Ecosystem
+            {org.tagline}
           </p>
           <h1>
-            Every tool you rely on.{" "}
-            <span className="grad-text">Converged into one.</span>
+            {org.heroHeadline}{" "}
+            <span className="grad-text">{org.heroHeadlineAccent}</span>
           </h1>
-          <p className={styles.heroSub}>
-            EKTAZECT unifies your apps, your data, and your people in a single
-            ecosystem — one that scales seamlessly from a team of one to the
-            enterprise, and never asks you to migrate again.
-          </p>
+          <p className={styles.heroSub}>{org.heroSub}</p>
           <div className={styles.heroCta}>
             <a className="btn btn-primary" href="#cta">
               Start converging
@@ -280,10 +270,7 @@ export default function Hero() {
               Explore the ecosystem
             </a>
           </div>
-          <p className={`${styles.heroMeta} mono`}>
-            NO CREDIT CARD&nbsp;&nbsp;·&nbsp;&nbsp;240+ NATIVE
-            INTEGRATIONS&nbsp;&nbsp;·&nbsp;&nbsp;FREE UP TO 5 SEATS
-          </p>
+          <p className={`${styles.heroMeta} mono`}>{org.heroMeta}</p>
         </div>
       </div>
       <a className={styles.scrollCue} href="#proof" aria-label="Scroll down">

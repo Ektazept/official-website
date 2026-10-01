@@ -1,28 +1,27 @@
 "use client";
 
 import { useToast } from "./ToastProvider";
+import data from "@/util/data.json";
 import styles from "./CTA.module.css";
+
+const { organization: org } = data;
 
 export default function CTA() {
   const { toast } = useToast();
 
   return (
     <section className={styles.cta} id="cta">
-      <div className={styles.ctaWord} aria-hidden="true">EKTAZECT</div>
+      <div className={styles.ctaWord} aria-hidden="true">{org.name}</div>
       <div className="container">
         <h2 data-reveal>
-          Ready to <span className="grad-text">converge?</span>
+          {org.ctaHeadline.split("converge?")[0]}
+          <span className="grad-text">converge?</span>
         </h2>
-        <p data-reveal>
-          Join 12,400+ teams running their entire stack on EKTAZECT. Set up in
-          minutes — scale forever.
-        </p>
+        <p data-reveal>{org.ctaSub}</p>
         <div className={styles.ctaBtns} data-reveal>
           <button
             className="btn btn-grad"
-            onClick={() =>
-              toast("Sandbox requested — your invite is on its way. (Demo build)")
-            }
+            onClick={() => toast("Sandbox requested — your invite is on its way. (Demo build)")}
           >
             Start converging — it&apos;s free
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -31,15 +30,13 @@ export default function CTA() {
           </button>
           <button
             className="btn btn-ghost-light"
-            onClick={() =>
-              toast("Demo request noted — our team converges on you shortly. (Demo build)")
-            }
+            onClick={() => toast("Demo request noted — our team converges on you shortly. (Demo build)")}
           >
             Book a demo
           </button>
         </div>
         <p className={`${styles.ctaMicro} mono`} data-reveal>
-          SETUP IN MINUTES · NO MIGRATION · CANCEL ANYTIME
+          {org.ctaMicro}
         </p>
       </div>
     </section>

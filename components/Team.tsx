@@ -2,43 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import data from "@/util/data.json";
 import { useToast } from "./ToastProvider";
 import styles from "./Team.module.css";
-
-const MEMBERS = [
-  {
-    idx: "01",
-    name: "Aarav Mehta",
-    role: "Founder & Chief Architect",
-    tags: "DISTRIBUTED SYSTEMS · API DESIGN",
-    seed: "ektazect-aarav",
-    bio: "Aarav spent fourteen years building distributed platforms before concluding the real problem was never scale — it was the seams between systems. He wrote the first line of EKTAZECT's kernel and still reviews every API contract personally. His rule: if a feature can't explain itself to a first-time user, it ships again.",
-  },
-  {
-    idx: "02",
-    name: "Lena Kovač",
-    role: "VP of Engineering",
-    tags: "RELIABILITY · KUBERNETES",
-    seed: "ektazect-lena",
-    bio: "Lena keeps 4.8 billion daily workflows flowing at 99.99% uptime. She previously ran reliability for a global payments network and treats every millisecond as a promise. Her team's on-call rotation is famously, almost suspiciously, quiet.",
-  },
-  {
-    idx: "03",
-    name: "Darius Cole",
-    role: "Head of Design Systems",
-    tags: "DESIGN SYSTEMS · MOTION",
-    seed: "ektazect-darius",
-    bio: "Darius believes convergence should feel effortless, not engineered. He built EKTAZECT's design system around a single rule — one interface language for every module — and obsesses over the details most people feel but never notice.",
-  },
-  {
-    idx: "04",
-    name: "Yuki Tanaka",
-    role: "Lead, Data & Intelligence",
-    tags: "STREAMING · RUST · ML",
-    seed: "ektazect-yuki",
-    bio: "Yuki leads the data and intelligence group, turning raw event streams into answers before you finish asking the question. She's the reason Pulse renders in real time and Vault has never lost a row. Rust, streams, and strong coffee.",
-  },
-];
 
 export default function Team() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
@@ -67,10 +33,10 @@ export default function Team() {
           </p>
         </div>
 
-        <div className={`${styles.teamList} `} data-reveal>
-          {MEMBERS.map((m, i) => (
+        <div className={styles.teamList} data-reveal>
+          {data.members.map((m, i) => (
             <article
-              key={m.idx}
+              key={m.id}
               className={`${styles.teamItem}${openIdx === i ? " " + styles.open : ""}`}
             >
               <button
@@ -78,7 +44,9 @@ export default function Team() {
                 aria-expanded={openIdx === i}
                 onClick={() => toggle(i)}
               >
-                <span className={`${styles.tIdx} mono`}>{m.idx}</span>
+                <span className={`${styles.tIdx} mono`}>
+                  {String(m.id).padStart(2, "0")}
+                </span>
                 <Image
                   className={styles.tImg}
                   src={`https://picsum.photos/seed/${m.seed}/160/160.jpg`}

@@ -1,62 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import data from "@/util/data.json";
 import { useToast } from "./ToastProvider";
 import styles from "./Pricing.module.css";
 
-const PLANS = [
-  {
-    name: "Starter",
-    desc: "For individuals and small teams getting connected.",
-    priceM: null,
-    priceY: null,
-    priceLabel: "$0",
-    priceNote: "Up to 5 users",
-    sub: "/ forever",
-    features: [
-      "EKTAZECT Flow & Pulse",
-      "10 linked sources",
-      "Community support",
-    ],
-    btnClass: "btn btn-ghost",
-    btnLabel: "Start free",
-    popular: false,
-  },
-  {
-    name: "Growth",
-    desc: "For scaling teams that need every module, unified.",
-    priceM: 29,
-    priceY: 23,
-    priceNote: null,
-    sub: "/ user / month",
-    features: [
-      "All five modules",
-      "Up to 240 linked sources",
-      "SSO & audit logs",
-      "Priority support",
-    ],
-    btnClass: "btn btn-grad",
-    btnLabel: "Start 14-day trial",
-    popular: true,
-  },
-  {
-    name: "Enterprise",
-    desc: "For organizations with advanced security and scale needs.",
-    priceM: null,
-    priceY: null,
-    priceLabel: "Custom",
-    priceNote: "Volume pricing",
-    sub: null,
-    features: [
-      "Unlimited sources & users",
-      "SOC 2 reports & custom SLAs",
-      "Dedicated success manager",
-    ],
-    btnClass: "btn btn-primary",
-    btnLabel: "Talk to sales",
-    popular: false,
-  },
-];
+const BTN_CLASS: Record<string, string> = {
+  ghost:   "btn btn-ghost",
+  grad:    "btn btn-grad",
+  primary: "btn btn-primary",
+};
 
 export default function Pricing() {
   const [yearly, setYearly] = useState(false);
@@ -88,8 +41,8 @@ export default function Pricing() {
           </div>
         </div>
 
-        <div className={`${styles.plans}`} data-reveal>
-          {PLANS.map((plan) => (
+        <div className={styles.plans} data-reveal>
+          {data.pricing.map((plan) => (
             <article
               key={plan.name}
               className={`${styles.plan}${plan.popular ? " " + styles.pop : ""}`}
@@ -106,14 +59,12 @@ export default function Pricing() {
                     ? `$${yearly ? plan.priceY : plan.priceM}`
                     : plan.priceLabel}
                 </b>
-                {plan.sub && <span>{plan.sub}</span>}
+                {plan.priceSub && <span>{plan.priceSub}</span>}
               </div>
 
               <p className={`${styles.priceNote} mono`}>
                 {plan.name === "Growth"
-                  ? yearly
-                    ? "Billed yearly"
-                    : "Billed monthly"
+                  ? yearly ? "Billed yearly" : "Billed monthly"
                   : plan.priceNote ?? ""}
               </p>
 
@@ -124,7 +75,7 @@ export default function Pricing() {
               </ul>
 
               <button
-                className={plan.btnClass}
+                className={BTN_CLASS[plan.btnVariant] ?? "btn btn-primary"}
                 onClick={() => toast(`${plan.name} plan selected. (Demo build)`)}
               >
                 {plan.btnLabel}
@@ -134,8 +85,7 @@ export default function Pricing() {
         </div>
 
         <p className={styles.planFoot}>
-          All plans include zero-migration upgrades. Demo pricing, for
-          illustration only.
+          All plans include zero-migration upgrades. Demo pricing, for illustration only.
         </p>
       </div>
     </section>

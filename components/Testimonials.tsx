@@ -2,30 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import data from "@/util/data.json";
 import styles from "./Testimonials.module.css";
 
-const TESTIMONIALS = [
-  {
-    q: "We replaced six subscriptions and two integration engineers with EKTAZECT. Onboarding a new tool used to take a sprint — now it takes a click.",
-    n: "Priya Raman",
-    r: "COO · NORTHBEAM LOGISTICS",
-    s: "ektazect-p1",
-  },
-  {
-    q: "The first platform that scaled with us instead of against us. We started as three people; we\u2019re 400 now, and nothing ever had to be migrated.",
-    n: "Jonas Weber",
-    r: "CTO · HELIO LABS",
-    s: "ektazect-p2",
-  },
-  {
-    q: "Our data finally speaks one language. EKTAZECT didn\u2019t just connect our tools — it converged how our teams think.",
-    n: "Amara Diallo",
-    r: "HEAD OF OPS · FIELDER & CO.",
-    s: "ektazect-p3",
-  },
-];
-
 export default function Testimonials() {
+  const T = data.testimonials;
   const [idx, setIdx] = useState(0);
   const [out, setOut] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -42,7 +23,7 @@ export default function Testimonials() {
     setOut(true);
     setTimeout(
       () => {
-        setIdx(((k % TESTIMONIALS.length) + TESTIMONIALS.length) % TESTIMONIALS.length);
+        setIdx(((k % T.length) + T.length) % T.length);
         setOut(false);
       },
       RM.current ? 0 : 280
@@ -51,16 +32,12 @@ export default function Testimonials() {
 
   function restart() {
     if (timerRef.current) clearInterval(timerRef.current);
-    if (!RM.current) {
-      timerRef.current = setInterval(() => go(idx + 1), 6500);
-    }
+    if (!RM.current) timerRef.current = setInterval(() => go(idx + 1), 6500);
   }
 
-  // swipe
   const sx = useRef<number | null>(null);
   const sy = useRef<number | null>(null);
-
-  const t = TESTIMONIALS[idx];
+  const t = T[idx];
 
   return (
     <section className={styles.quotes} id="quotes">
@@ -78,60 +55,47 @@ export default function Testimonials() {
           onMouseEnter={() => { if (timerRef.current) clearInterval(timerRef.current); }}
           onMouseLeave={restart}
           onTouchStart={(e) => {
-            sx.current = e.touches[0].clientX;
-            sy.current = e.touches[0].clientY;
+            sx.current = e.touches[0].clientX; sy.current = e.touches[0].clientY;
             if (timerRef.current) clearInterval(timerRef.current);
           }}
           onTouchEnd={(e) => {
             if (sx.current === null) return;
             const dx = e.changedTouches[0].clientX - sx.current;
             const dy = e.changedTouches[0].clientY - (sy.current ?? 0);
-            if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy)) {
-              dx < 0 ? go(idx + 1) : go(idx - 1);
-            }
-            restart();
-            sx.current = null;
-            sy.current = null;
+            if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy)) dx < 0 ? go(idx + 1) : go(idx - 1);
+            restart(); sx.current = null; sy.current = null;
           }}
         >
           <div className={`${styles.tSlide}${out ? " " + styles.out : ""}`}>
             <p className={styles.tQuote}>{t.q}</p>
             <div className={styles.tAuthor}>
               <Image
-                src={`https://picsum.photos/seed/${t.s}/120/120.jpg`}
-                alt={`Portrait of ${t.n}`}
+                src={`https://picsum.photos/seed/${t.seed}/120/120.jpg`}
+                alt={`Portrait of ${t.name}`}
                 width={46}
                 height={46}
                 className={styles.tImg}
               />
               <div>
-                <div className={styles.tName}>{t.n}</div>
-                <div className={`${styles.tRole} mono`}>{t.r}</div>
+                <div className={styles.tName}>{t.name}</div>
+                <div className={`${styles.tRole} mono`}>{t.role}</div>
               </div>
             </div>
           </div>
 
           <div className={styles.tCtrl}>
-            <button
-              className={styles.tBtn}
-              aria-label="Previous quote"
-              onClick={() => { go(idx - 1); restart(); }}
-            >
+            <button className={styles.tBtn} aria-label="Previous quote" onClick={() => { go(idx - 1); restart(); }}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M19 12H5M11 18l-6-6 6-6" />
               </svg>
             </button>
-            <button
-              className={styles.tBtn}
-              aria-label="Next quote"
-              onClick={() => { go(idx + 1); restart(); }}
-            >
+            <button className={styles.tBtn} aria-label="Next quote" onClick={() => { go(idx + 1); restart(); }}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
             </button>
             <div className={styles.tDots}>
-              {TESTIMONIALS.map((_, k) => (
+              {T.map((_, k) => (
                 <button
                   key={k}
                   className={`${styles.tDot}${k === idx ? " " + styles.tDotOn : ""}`}

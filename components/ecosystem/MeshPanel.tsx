@@ -1,33 +1,23 @@
 "use client";
 
 import { useState } from "react";
+import data from "@/util/data.json";
 import { useToast } from "../ToastProvider";
 import BentoArrow from "./BentoArrow";
 import styles from "./Ecosystem.module.css";
 
-const ALL_CHIPS = [
-  { label: "SLACK", on: true },
-  { label: "GITHUB", on: true },
-  { label: "NOTION", on: true },
-  { label: "STRIPE", on: false },
-  { label: "LINEAR", on: false },
-  { label: "ZOOM", on: false },
-  { label: "FIGMA", on: false },
-  { label: "JIRA", on: false },
-  { label: "GMAIL", on: false },
-  { label: "SALESFORCE", on: false },
-];
+const mod = data.modules.find((m) => m.id === "mesh")!;
 
 export default function MeshPanel() {
   const { toast } = useToast();
-  const [chips, setChips] = useState(ALL_CHIPS);
+  const [chips, setChips] = useState(data.meshChips);
   const [popped, setPopped] = useState<string | null>(null);
 
   function toggle(label: string) {
+    const wasOn = chips.find((c) => c.label === label)?.on;
     setChips((prev) =>
       prev.map((c) => (c.label === label ? { ...c, on: !c.on } : c))
     );
-    const wasOn = chips.find((c) => c.label === label)?.on;
     toast(
       wasOn
         ? `${label} unlinked.`
@@ -42,18 +32,15 @@ export default function MeshPanel() {
   return (
     <article className={`${styles.bpanel} ${styles.bMesh}`}>
       <div className={styles.bTop}>
-        <span className={`${styles.bIdx} mono`}>MOD·05</span>
+        <span className={`${styles.bIdx} mono`}>{mod.idx}</span>
         <BentoArrow />
       </div>
       <div className={styles.meshFlex}>
         <div>
           <h3 className={styles.bName}>
-            EKTAZECT <b>Mesh</b>
+            EKTAZECT <b>{mod.name}</b>
           </h3>
-          <p className={styles.bDesc}>
-            The integration fabric. Connect a source once — every module
-            inherits it instantly. Tap a chip to link it.
-          </p>
+          <p className={styles.bDesc}>{mod.desc}</p>
           <p className={`${styles.meshCount} mono`}>
             <b>{linkedCount}</b> / 240 SOURCES LINKED
           </p>

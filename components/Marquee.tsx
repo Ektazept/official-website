@@ -1,14 +1,8 @@
+import data from "@/util/data.json";
 import styles from "./Marquee.module.css";
 
-const ITEMS = [
-  "SLACK","GITHUB","NOTION","SALESFORCE","STRIPE","LINEAR",
-  "FIGMA","JIRA","GMAIL","ZOOM","HUBSPOT","SNOWFLAKE",
-  "POSTGRES","S3","ZENDESK","ASANA",
-];
-
 export default function Marquee() {
-  // duplicate the track for seamless loop
-  const track = [...ITEMS, ...ITEMS];
+  const track = [...data.integrations, ...data.integrations];
 
   return (
     <div className={styles.marqueeSec} id="proof">

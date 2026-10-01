@@ -1,21 +1,15 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import data from "@/util/data.json";
 import styles from "./Stats.module.css";
 
-interface StatDef {
+type StatDef = {
   count: number;
   decimals?: number;
   suffix: string;
   label: string;
-}
-
-const STATS: StatDef[] = [
-  { count: 12400, suffix: "+", label: "TEAMS CONVERGED" },
-  { count: 240, suffix: "+", label: "NATIVE INTEGRATIONS" },
-  { count: 4.8, decimals: 1, suffix: "B", label: "DAILY WORKFLOWS" },
-  { count: 99.99, decimals: 2, suffix: "%", label: "UPTIME SLA" },
-];
+};
 
 function StatItem({ stat }: { stat: StatDef }) {
   const numRef = useRef<HTMLSpanElement>(null);
@@ -26,7 +20,6 @@ function StatItem({ stat }: { stat: StatDef }) {
     if (!el) return;
     const RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const d = stat.decimals ?? 0;
-
     const fmt = (v: number) =>
       d > 0 ? v.toFixed(d) : Math.round(v).toLocaleString("en-US");
 
@@ -35,12 +28,7 @@ function StatItem({ stat }: { stat: StatDef }) {
         if (!entries[0].isIntersecting || observed.current) return;
         observed.current = true;
         obs.disconnect();
-
-        if (RM) {
-          el.innerHTML = fmt(stat.count) + `<em>${stat.suffix}</em>`;
-          return;
-        }
-
+        if (RM) { el.innerHTML = fmt(stat.count) + `<em>${stat.suffix}</em>`; return; }
         const t0 = performance.now(), dur = 1700;
         const tick = (now: number) => {
           const p = Math.min((now - t0) / dur, 1);
@@ -70,8 +58,8 @@ export default function Stats() {
   return (
     <section className={styles.stats}>
       <div className={`container ${styles.statsRow}`}>
-        {STATS.map((s) => (
-          <StatItem key={s.label} stat={s} />
+        {data.stats.map((s) => (
+          <StatItem key={s.label} stat={s as StatDef} />
         ))}
       </div>
     </section>

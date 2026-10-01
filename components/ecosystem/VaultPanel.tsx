@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import data from "@/util/data.json";
 import BentoArrow from "./BentoArrow";
 import styles from "./Ecosystem.module.css";
+
+const mod = data.modules.find((m) => m.id === "vault")!;
 
 const LINES = [
   { c: 'vault.query("unified.orders · 240 sources")' },
@@ -21,20 +24,16 @@ export default function VaultPanel() {
   useEffect(() => {
     const el = textRef.current;
     if (!el) return;
-
     let stopped = false;
 
     function play() {
       let li = 0;
-
       function nextLine() {
         if (stopped) return;
         if (!visibleRef.current) { timerRef.current = setTimeout(nextLine, 800); return; }
         if (li >= LINES.length) {
-          el!.innerHTML = "";
-          li = 0;
-          timerRef.current = setTimeout(nextLine, 2400);
-          return;
+          el!.innerHTML = ""; li = 0;
+          timerRef.current = setTimeout(nextLine, 2400); return;
         }
         const line = LINES[li++];
         const span = document.createElement("span");
@@ -42,7 +41,6 @@ export default function VaultPanel() {
         el!.appendChild(span);
         const text = line.c ?? line.ok!;
         let ci = 0;
-
         function typeChar() {
           if (stopped) return;
           if (!visibleRef.current) { timerRef.current = setTimeout(typeChar, 400); return; }
@@ -67,7 +65,6 @@ export default function VaultPanel() {
     if (typerEl) obs.observe(typerEl);
 
     play();
-
     return () => {
       stopped = true;
       if (timerRef.current) clearTimeout(timerRef.current);
@@ -78,16 +75,11 @@ export default function VaultPanel() {
   return (
     <article className={`${styles.bpanel} ${styles.bVault}`}>
       <div className={styles.bTop}>
-        <span className={`${styles.bIdx} mono`}>MOD·03</span>
+        <span className={`${styles.bIdx} mono`}>{mod.idx}</span>
         <BentoArrow />
       </div>
-      <h3 className={styles.bName}>
-        EKTAZECT <b>Vault</b>
-      </h3>
-      <p className={styles.bDesc}>
-        One data layer for every source. Query it all as if it were one
-        database.
-      </p>
+      <h3 className={styles.bName}>EKTAZECT <b>{mod.name}</b></h3>
+      <p className={styles.bDesc}>{mod.desc}</p>
       <div className={`${styles.typer} mono`} data-typer>
         <span ref={textRef} />
         <span className={styles.caret} />
