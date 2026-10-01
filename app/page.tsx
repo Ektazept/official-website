@@ -1,11 +1,11 @@
 import { ToastProvider } from "@/components/ToastProvider";
 import RevealObserver from "@/components/RevealObserver";
+import BackgroundFX from "@/components/BackgroundFX";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import Stats from "@/components/Stats";
 import Vision from "@/components/Vision";
-import Ecosystem from "@/components/ecosystem/Ecosystem";
 import Testimonials from "@/components/Testimonials";
 import Team from "@/components/Team";
 import Pricing from "@/components/Pricing";
@@ -16,6 +16,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <ToastProvider>
+      <BackgroundFX />
       <RevealObserver />
       <a className="skip" href="#main">
         Skip to content
@@ -26,7 +27,6 @@ export default function Home() {
         <Marquee />
         <Stats />
         <Vision />
-        <Ecosystem />
         <Testimonials />
         <Team />
         <Pricing />

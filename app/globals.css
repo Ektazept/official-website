@@ -9,9 +9,9 @@
   --ink-2: #0a101f;
   --slate: #64748b;
   --slate-light: #94a3b8;
-  --bg: #f8fafc;
-  --panel: #ffffff;
-  --line: #e2e8f0;
+  --bg: #04070f;
+  --panel: rgba(10, 16, 31, 0.72);
+  --line: rgba(148, 163, 184, 0.16);
   --purple: #7c3aed;
   --purple-soft: #a78bfa;
   --grad: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 100%);
@@ -38,11 +38,21 @@ body {
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--ink);
+  color: #e2e8f0;
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
   overflow-x: clip;
+}
+
+/* Ensure page content sits above the fixed background layer */
+#__next,
+main,
+header,
+footer,
+nav {
+  position: relative;
+  z-index: 1;
 }
 
 ::selection {
@@ -115,13 +125,14 @@ h3 {
   font-family: var(--font-space-grotesk), sans-serif;
   letter-spacing: -0.02em;
   line-height: 1.12;
+  color: #e2e8f0;
 }
 
 .eyebrow {
   font-family: var(--font-roboto-mono), monospace;
   font-size: 12px;
   letter-spacing: 0.18em;
-  color: var(--purple);
+  color: var(--purple-soft);
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -131,7 +142,7 @@ h3 {
 .eyebrow .eb-dot {
   width: 7px;
   height: 7px;
-  background: var(--purple);
+  background: var(--purple-soft);
   transform: rotate(45deg);
   flex: none;
 }
@@ -144,6 +155,7 @@ h3 {
   font-size: clamp(1.55rem, 1rem + 1.7vw, 2.4rem);
   font-weight: 700;
   margin-top: 18px;
+  color: #e2e8f0;
 }
 
 .sec-head.split {
@@ -154,7 +166,7 @@ h3 {
 }
 
 .sec-lede {
-  color: var(--slate);
+  color: var(--slate-light);
   font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.1rem);
   max-width: 46ch;
 }
@@ -210,14 +222,14 @@ h3 {
 }
 
 .btn-ghost {
-  border: 1px solid var(--line);
-  color: var(--ink);
+  border: 1px solid var(--dark-line);
+  color: #e2e8f0;
   background: transparent;
 }
 
 .btn-ghost:hover {
-  border-color: var(--blue);
-  color: var(--blue);
+  border-color: var(--blue-soft);
+  color: var(--blue-soft);
 }
 
 .btn-ghost-light {
@@ -359,4 +371,32 @@ h3 {
   .btn:hover {
     transform: none;
   }
+}
+
+/* ============ CUSTOM SCROLLBAR ============ */
+:root {
+  scrollbar-width: thin;
+  scrollbar-color: var(--blue) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--blue) 0%, var(--purple) 100%);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--blue-soft) 0%, var(--purple-soft) 100%);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
