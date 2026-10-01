@@ -3,7 +3,7 @@
     "name": "EKTAZECT",
     "tagline": "The Unified SaaS Ecosystem",
     "description": "The Unified SaaS Ecosystem. All your workflows, data, and tools — one intelligent platform.",
-    "copyright": "© 2025 EKTAZECT, INC. — THE UNIFIED SAAS ECOSYSTEM",
+    "copyright": "© 2026 EKTAZECT, INC. — THE UNIFIED SAAS ECOSYSTEM",
     "heroHeadline": "Every tool you rely on.",
     "heroHeadlineAccent": "Converged into one.",
     "heroSub": "EKTAZECT unifies your apps, your data, and your people in a single ecosystem — one that scales seamlessly from a team of one to the enterprise, and never asks you to migrate again.",
@@ -17,9 +17,9 @@
     "newsletterTitle": "The Convergence Brief",
     "newsletterSub": "One email a month on unifying your stack. No noise, ever.",
     "social": {
-      "x":        "https://x.com/ektazect",
-      "github":   "https://github.com/ektazect",
-      "linkedin": "https://linkedin.com/company/ektazect"
+      "x": "https://x.com/ektazect",
+      "github": "https://github.com/Ektazept",
+      "linkedin": "https://linkedin.com/company/ektazept"
     }
   },
   "members": [
@@ -31,9 +31,9 @@
       "seed": "ektazect-hasitha",
       "bio": "Hasitha spent years building distributed platforms before concluding the real problem was never scale — it was the seams between systems. He wrote the first line of EKTAZECT's kernel and still reviews every API contract personally. His rule: if a feature can't explain itself to a first-time user, it ships again.",
       "social": {
-        "x":       "https://x.com/hasitha_san_",
-        "github":  "https://github.com/hasitha-sandakelum",
-        "linkedin":"https://linkedin.com/in/hasitha-sandakelum"
+        "x": "https://x.com/DevSandakelum",
+        "github": "https://github.com/dev-sandakelum",
+        "linkedin": "https://linkedin.com/in/hasitha-sandakelum"
       }
     },
     {
@@ -44,9 +44,9 @@
       "seed": "ektazect-vishwa",
       "bio": "Vishwa keeps billions of daily workflows flowing at 99.99% uptime. He previously ran reliability for a global payments network and treats every millisecond as a promise. His team's on-call rotation is famously, almost suspiciously, quiet.",
       "social": {
-        "x":       "https://x.com/vishwa_pramuditha",
-        "github":  "https://github.com/vishwa-pramuditha",
-        "linkedin":"https://linkedin.com/in/vishwa-pramuditha"
+        "x": "https://x.com/vishwa_pramuditha",
+        "github": "https://github.com/VishwaX2004",
+        "linkedin": "https://www.linkedin.com/in/vishwa-pramuditha"
       }
     },
     {
@@ -57,9 +57,9 @@
       "seed": "ektazect-dasindu",
       "bio": "Dasindu believes convergence should feel effortless, not engineered. He built EKTAZECT's design system around a single rule — one interface language for every module — and obsesses over the details most people feel but never notice.",
       "social": {
-        "x":       "https://x.com/dasindu_dilvan",
-        "github":  "https://github.com/dasindu-dilvan",
-        "linkedin":"https://linkedin.com/in/dasindu-dilvan"
+        "x": "https://x.com/dasindu_dilvan",
+        "github": "https://github.com/DasinduDilvan",
+        "linkedin": "https://www.linkedin.com/in/dasindudilvan"
       }
     },
     {
@@ -70,22 +70,53 @@
       "seed": "ektazect-amjad",
       "bio": "Amjad leads the data and intelligence group, turning raw event streams into answers before you finish asking the question. He's the reason Pulse renders in real time and Vault has never lost a row. Rust, streams, and strong coffee.",
       "social": {
-        "x":       "https://x.com/amjad_hassan",
-        "github":  "https://github.com/amjad-hassan",
-        "linkedin":"https://linkedin.com/in/amjad-hassan"
+        "x": "https://x.com/amjad_hassan",
+        "github": "https://github.com/nextgeneratio",
+        "linkedin": "https://www.linkedin.com/in/amjad-hasan-301390250/"
       }
     }
   ],
   "stats": [
-    { "count": 12400, "suffix": "+", "label": "TEAMS CONVERGED" },
-    { "count": 240,   "suffix": "+", "label": "NATIVE INTEGRATIONS" },
-    { "count": 4.8,   "decimals": 1, "suffix": "B", "label": "DAILY WORKFLOWS" },
-    { "count": 99.99, "decimals": 2, "suffix": "%", "label": "UPTIME SLA" }
+    {
+      "count": 12400,
+      "suffix": "+",
+      "label": "TEAMS CONVERGED"
+    },
+    {
+      "count": 240,
+      "suffix": "+",
+      "label": "NATIVE INTEGRATIONS"
+    },
+    {
+      "count": 4.8,
+      "decimals": 1,
+      "suffix": "B",
+      "label": "DAILY WORKFLOWS"
+    },
+    {
+      "count": 99.99,
+      "decimals": 2,
+      "suffix": "%",
+      "label": "UPTIME SLA"
+    }
   ],
   "integrations": [
-    "SLACK","GITHUB","NOTION","SALESFORCE","STRIPE","LINEAR",
-    "FIGMA","JIRA","GMAIL","ZOOM","HUBSPOT","SNOWFLAKE",
-    "POSTGRES","S3","ZENDESK","ASANA"
+    "SLACK",
+    "GITHUB",
+    "NOTION",
+    "SALESFORCE",
+    "STRIPE",
+    "LINEAR",
+    "FIGMA",
+    "JIRA",
+    "GMAIL",
+    "ZOOM",
+    "HUBSPOT",
+    "SNOWFLAKE",
+    "POSTGRES",
+    "S3",
+    "ZENDESK",
+    "ASANA"
   ],
   "modules": [
     {
@@ -120,16 +151,46 @@
     }
   ],
   "meshChips": [
-    { "label": "SLACK",       "on": true  },
-    { "label": "GITHUB",      "on": true  },
-    { "label": "NOTION",      "on": true  },
-    { "label": "STRIPE",      "on": false },
-    { "label": "LINEAR",      "on": false },
-    { "label": "ZOOM",        "on": false },
-    { "label": "FIGMA",       "on": false },
-    { "label": "JIRA",        "on": false },
-    { "label": "GMAIL",       "on": false },
-    { "label": "SALESFORCE",  "on": false }
+    {
+      "label": "SLACK",
+      "on": true
+    },
+    {
+      "label": "GITHUB",
+      "on": true
+    },
+    {
+      "label": "NOTION",
+      "on": true
+    },
+    {
+      "label": "STRIPE",
+      "on": false
+    },
+    {
+      "label": "LINEAR",
+      "on": false
+    },
+    {
+      "label": "ZOOM",
+      "on": false
+    },
+    {
+      "label": "FIGMA",
+      "on": false
+    },
+    {
+      "label": "JIRA",
+      "on": false
+    },
+    {
+      "label": "GMAIL",
+      "on": false
+    },
+    {
+      "label": "SALESFORCE",
+      "on": false
+    }
   ],
   "testimonials": [
     {
@@ -228,30 +289,96 @@
     }
   ],
   "nav": [
-    { "href": "#ecosystem", "label": "Ecosystem" },
-    { "href": "#vision",    "label": "Vision"    },
-    { "href": "#team",      "label": "Team"      },
-    { "href": "#pricing",   "label": "Pricing"   },
-    { "href": "#faq",       "label": "FAQ"       }
+    {
+      "href": "#ecosystem",
+      "label": "Ecosystem"
+    },
+    {
+      "href": "#vision",
+      "label": "Vision"
+    },
+    {
+      "href": "#team",
+      "label": "Team"
+    },
+    {
+      "href": "#pricing",
+      "label": "Pricing"
+    },
+    {
+      "href": "#faq",
+      "label": "FAQ"
+    }
   ],
   "footerProduct": [
-    { "label": "EKTAZECT Flow",  "href": "#ecosystem" },
-    { "label": "EKTAZECT Pulse", "href": "#ecosystem" },
-    { "label": "EKTAZECT Vault", "href": "#ecosystem" },
-    { "label": "EKTAZECT Mesh",  "href": "#ecosystem" },
-    { "label": "EKTAZECT ID",    "href": "#ecosystem" }
+    {
+      "label": "EKTAZECT Flow",
+      "href": "#ecosystem"
+    },
+    {
+      "label": "EKTAZECT Pulse",
+      "href": "#ecosystem"
+    },
+    {
+      "label": "EKTAZECT Vault",
+      "href": "#ecosystem"
+    },
+    {
+      "label": "EKTAZECT Mesh",
+      "href": "#ecosystem"
+    },
+    {
+      "label": "EKTAZECT ID",
+      "href": "#ecosystem"
+    }
   ],
   "footerCompany": [
-    { "label": "Vision & Mission", "href": "#vision",  "toast": null },
-    { "label": "Team",             "href": "#team",    "toast": null },
-    { "label": "Pricing",          "href": "#pricing", "toast": null },
-    { "label": "Careers",          "href": "#",        "toast": "Careers page isn't part of this demo — but we're hiring in spirit." },
-    { "label": "Press kit",        "href": "#",        "toast": "Press kit isn't part of this demo." }
+    {
+      "label": "Vision & Mission",
+      "href": "#vision",
+      "toast": null
+    },
+    {
+      "label": "Team",
+      "href": "#team",
+      "toast": null
+    },
+    {
+      "label": "Pricing",
+      "href": "#pricing",
+      "toast": null
+    },
+    {
+      "label": "Careers",
+      "href": "#",
+      "toast": "Careers page isn't part of this demo — but we're hiring in spirit."
+    },
+    {
+      "label": "Press kit",
+      "href": "#",
+      "toast": "Press kit isn't part of this demo."
+    }
   ],
   "footerResources": [
-    { "label": "Documentation", "href": "#", "toast": "Documentation isn't part of this demo." },
-    { "label": "API Reference",  "href": "#", "toast": "API reference isn't part of this demo." },
-    { "label": "Changelog",      "href": "#", "toast": "Changelog isn't part of this demo." },
-    { "label": "FAQ",            "href": "#faq", "toast": null }
+    {
+      "label": "Documentation",
+      "href": "#",
+      "toast": "Documentation isn't part of this demo."
+    },
+    {
+      "label": "API Reference",
+      "href": "#",
+      "toast": "API reference isn't part of this demo."
+    },
+    {
+      "label": "Changelog",
+      "href": "#",
+      "toast": "Changelog isn't part of this demo."
+    },
+    {
+      "label": "FAQ",
+      "href": "#faq",
+      "toast": null
+    }
   ]
 }
