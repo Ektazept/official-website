@@ -1,0 +1,99 @@
+/* ============ ROOT WRAPPER ============ */
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ============ NEURAL CANVAS ============ */
+.net {
+  position: absolute;
+  inset: 0;
+}
+
+/* ============ AURORA BLOBS ============ */
+.aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.b {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.b1 {
+  width: 60vmax;
+  height: 60vmax;
+  top: -22vmax;
+  right: -16vmax;
+  background: radial-gradient(
+    circle,
+    rgba(37, 99, 235, 0.32),
+    rgba(37, 99, 235, 0) 62%
+  );
+  animation: drift1 26s ease-in-out infinite alternate;
+}
+
+.b2 {
+  width: 55vmax;
+  height: 55vmax;
+  bottom: -24vmax;
+  left: -18vmax;
+  background: radial-gradient(
+    circle,
+    rgba(124, 93, 250, 0.26),
+    rgba(124, 93, 250, 0) 62%
+  );
+  animation: drift2 32s ease-in-out infinite alternate;
+}
+
+.b3 {
+  width: 38vmax;
+  height: 38vmax;
+  bottom: 6vmax;
+  right: 12vmax;
+  background: radial-gradient(
+    circle,
+    rgba(45, 212, 191, 0.14),
+    rgba(45, 212, 191, 0) 60%
+  );
+  animation: drift3 22s ease-in-out infinite alternate;
+}
+
+@keyframes drift1 {
+  to { transform: translate(-8vmax, 10vmax) scale(1.15); }
+}
+@keyframes drift2 {
+  to { transform: translate(10vmax, -8vmax) scale(1.1); }
+}
+@keyframes drift3 {
+  to { transform: translate(-6vmax, -10vmax) scale(1.25); }
+}
+
+/* ============ NOISE GRAIN ============ */
+.noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============ VIGNETTE ============ */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120% 90% at 50% 40%,
+    transparent 55%,
+    rgba(2, 5, 12, 0.6) 100%
+  );
+}
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce) {
+  .b { animation: none; }
+}
