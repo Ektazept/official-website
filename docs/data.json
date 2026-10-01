@@ -1,0 +1,27 @@
+{
+  "organization": {
+    "name": "ektazept"
+  },
+  "members": [
+    {
+      "id": 1,
+      "name": "Hasitha Sandakelum",
+      "role": "Founder"
+    },
+    {
+      "id": 2,
+      "name": "Vishwa Pramuditha",
+      "role": "Founder"
+    },
+    {
+      "id": 3,
+      "name": "Dasindu Dilvan",
+      "role": "Founder"
+    },
+    {
+      "id": 4,
+      "name": "Amjad Hassan",
+      "role": "Founder"
+    }
+  ]
+}

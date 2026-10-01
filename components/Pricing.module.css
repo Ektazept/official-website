@@ -1,0 +1,225 @@
+.pricing {
+  padding: var(--sec-pad) 0;
+  background: #fff;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+/* billing toggle */
+.bill {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 26px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--slate);
+}
+
+.billOn {
+  color: var(--ink);
+}
+
+.billSw {
+  position: relative;
+  width: 52px;
+  height: 30px;
+  border-radius: 99px;
+  background: var(--line);
+  transition: background 0.25s;
+  flex: none;
+  cursor: pointer;
+}
+
+.billSw::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.3);
+  transition: transform 0.25s;
+}
+
+.billSw[data-on="true"] {
+  background: var(--blue);
+}
+
+.billSw[data-on="true"]::after {
+  transform: translateX(22px);
+}
+
+.billSw:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 3px;
+}
+
+.save {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  background: rgba(124, 58, 237, 0.1);
+  padding: 4px 10px;
+  border-radius: 99px;
+}
+
+/* plans grid */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2vw, 28px);
+  align-items: stretch;
+  margin-top: 40px;
+}
+
+.plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: clamp(22px, 2.4vw, 30px);
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.plan:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 40px -24px rgba(15, 23, 42, 0.3);
+  border-color: var(--blue-soft);
+}
+
+/* popular / highlighted plan */
+.pop {
+  background: var(--ink);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.5),
+    0 30px 60px -30px rgba(124, 58, 237, 0.55);
+}
+
+.planTag {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--grad);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  padding: 5px 14px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+
+.plan h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.planDesc {
+  margin-top: 8px;
+  color: var(--slate);
+  font-size: 0.95rem;
+}
+
+.pop .planDesc {
+  color: #b9c4d6;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 18px 0 4px;
+  flex-wrap: wrap;
+}
+
+.price b {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(2.1rem, 1.6rem + 1.4vw, 2.9rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.price span {
+  color: var(--slate);
+  font-size: 0.9rem;
+}
+
+.pop .price span {
+  color: var(--slate-light);
+}
+
+.priceNote {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--slate);
+  min-height: 1.4em;
+}
+
+.pop .priceNote {
+  color: var(--slate-light);
+}
+
+.plan ul {
+  list-style: none;
+  margin: 20px 0 24px;
+  display: grid;
+  gap: 10px;
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+.plan li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.plan li::before {
+  content: "";
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.14)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.5l2.5 2.5L13 6.5' fill='none' stroke='%237C3AED' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / 100% no-repeat;
+}
+
+.plan .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.planFoot {
+  text-align: center;
+  color: var(--slate);
+  font-size: 0.9rem;
+  margin-top: 32px;
+}
+
+@media (max-width: 960px) {
+  .plans {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 28px;
+  }
+
+  .planDesc {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .planFoot {
+    font-size: 0.85rem;
+  }
+}

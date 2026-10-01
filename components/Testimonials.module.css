@@ -1,0 +1,133 @@
+.quotes {
+  padding: var(--sec-pad) 0;
+  background: #fff;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.qStage {
+  max-width: 820px;
+  touch-action: pan-y;
+}
+
+.tSlide {
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.tSlide.out {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.tQuote {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(19px, 2.8vw, 31px);
+  font-weight: 500;
+  line-height: 1.42;
+  letter-spacing: -0.01em;
+}
+
+.tQuote::before {
+  content: "\201C";
+  color: var(--purple);
+}
+
+.tQuote::after {
+  content: "\201D";
+  color: var(--purple);
+}
+
+.tAuthor {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.tImg {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+}
+
+.tName {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.tRole {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--slate);
+  margin-top: 2px;
+}
+
+.tCtrl {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 38px;
+}
+
+.tBtn {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  transition: 0.2s;
+  color: var(--ink);
+}
+
+.tBtn:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.tBtn svg {
+  width: 17px;
+  height: 17px;
+}
+
+.tDots {
+  display: flex;
+  gap: 8px;
+  margin-left: 4px;
+}
+
+.tDot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: transparent;
+  position: relative;
+  transition: 0.25s;
+  padding: 0;
+}
+
+.tDot::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: var(--line);
+  transition: 0.25s;
+}
+
+.tDotOn::after {
+  background: var(--purple);
+  transform: scale(1.2);
+}
+
+@media (max-width: 820px) {
+  .tCtrl {
+    margin-top: 28px;
+  }
+
+  .tAuthor {
+    margin-top: 22px;
+  }
+}
