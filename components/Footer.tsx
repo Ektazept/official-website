@@ -2,6 +2,8 @@
 
 import { useRef, useState } from "react";
 import data from "@/util/data.json";
+import Logo from "./Logo";
+import SocialLinks from "./SocialLinks";
 import { useToast } from "./ToastProvider";
 import styles from "./Footer.module.css";
 
@@ -34,13 +36,11 @@ export default function Footer() {
         <div className={styles.footGrid}>
           {/* Brand */}
           <div className={styles.footBrand}>
-            <span className={styles.logo}>
-              <span className={styles.logoMark}>E</span>
-              <span className={styles.logoWord}>
-                EKTA<span className={styles.z}>ZECT</span>
-              </span>
-            </span>
+            <Logo variant="light" height={26} />
             <p>{org.description}</p>
+            <div className={styles.footSocial}>
+              <SocialLinks social={org.social} variant="light" />
+            </div>
           </div>
 
           {/* Product */}

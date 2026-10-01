@@ -131,26 +131,7 @@
 }
 
 .tSocial {
-  display: flex;
-  gap: 9px;
   padding: 12px 6px 28px 74px;
-}
-
-.tSocial button {
-  font-family: var(--font-roboto-mono), monospace;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--dark-line);
-  border-radius: 10px;
-  color: var(--slate-light);
-  transition: 0.2s;
-}
-
-.tSocial button:hover {
-  border-color: var(--purple);
-  color: var(--purple-soft);
 }
 
 /* ============ MOBILE ============ */
@@ -193,10 +174,5 @@
 
   .tSocial {
     padding: 10px 4px 24px;
-  }
-
-  .tSocial button {
-    width: 48px;
-    height: 48px;
   }
 }

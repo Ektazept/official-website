@@ -3,12 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import data from "@/util/data.json";
-import { useToast } from "./ToastProvider";
+import SocialLinks from "./SocialLinks";
 import styles from "./Team.module.css";
 
 export default function Team() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
-  const { toast } = useToast();
 
   function toggle(i: number) {
     setOpenIdx(openIdx === i ? null : i);
@@ -49,7 +48,7 @@ export default function Team() {
                 </span>
                 <Image
                   className={styles.tImg}
-                  src={`https://picsum.photos/seed/${m.seed}/160/160.jpg`}
+                  src={`/members/img/${m.seed}.jpeg`}
                   alt={`Portrait of ${m.name}`}
                   width={64}
                   height={64}
@@ -71,16 +70,7 @@ export default function Team() {
                 <div className={styles.teamBodyIn}>
                   <p className={styles.tBio}>{m.bio}</p>
                   <div className={styles.tSocial}>
-                    {["X", "GH", "IN"].map((label) => (
-                      <button
-                        key={label}
-                        onClick={() =>
-                          toast(`Demo build — ${m.name.split(" ")[0]}'s profile links aren't wired up yet.`)
-                        }
-                      >
-                        {label}
-                      </button>
-                    ))}
+                    <SocialLinks social={m.social} variant="light" />
                   </div>
                 </div>
               </div>

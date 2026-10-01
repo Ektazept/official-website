@@ -15,7 +15,12 @@
     "ctaSub": "Join 12,400+ teams running their entire stack on EKTAZECT. Set up in minutes — scale forever.",
     "ctaMicro": "SETUP IN MINUTES · NO MIGRATION · CANCEL ANYTIME",
     "newsletterTitle": "The Convergence Brief",
-    "newsletterSub": "One email a month on unifying your stack. No noise, ever."
+    "newsletterSub": "One email a month on unifying your stack. No noise, ever.",
+    "social": {
+      "x":        "https://x.com/ektazect",
+      "github":   "https://github.com/ektazect",
+      "linkedin": "https://linkedin.com/company/ektazect"
+    }
   },
   "members": [
     {
@@ -24,7 +29,12 @@
       "role": "Founder & Chief Architect",
       "tags": "DISTRIBUTED SYSTEMS · API DESIGN",
       "seed": "ektazect-hasitha",
-      "bio": "Hasitha spent years building distributed platforms before concluding the real problem was never scale — it was the seams between systems. He wrote the first line of EKTAZECT's kernel and still reviews every API contract personally. His rule: if a feature can't explain itself to a first-time user, it ships again."
+      "bio": "Hasitha spent years building distributed platforms before concluding the real problem was never scale — it was the seams between systems. He wrote the first line of EKTAZECT's kernel and still reviews every API contract personally. His rule: if a feature can't explain itself to a first-time user, it ships again.",
+      "social": {
+        "x":       "https://x.com/hasitha_san_",
+        "github":  "https://github.com/hasitha-sandakelum",
+        "linkedin":"https://linkedin.com/in/hasitha-sandakelum"
+      }
     },
     {
       "id": 2,
@@ -32,7 +42,12 @@
       "role": "Founder & VP of Engineering",
       "tags": "RELIABILITY · KUBERNETES",
       "seed": "ektazect-vishwa",
-      "bio": "Vishwa keeps billions of daily workflows flowing at 99.99% uptime. He previously ran reliability for a global payments network and treats every millisecond as a promise. His team's on-call rotation is famously, almost suspiciously, quiet."
+      "bio": "Vishwa keeps billions of daily workflows flowing at 99.99% uptime. He previously ran reliability for a global payments network and treats every millisecond as a promise. His team's on-call rotation is famously, almost suspiciously, quiet.",
+      "social": {
+        "x":       "https://x.com/vishwa_pramuditha",
+        "github":  "https://github.com/vishwa-pramuditha",
+        "linkedin":"https://linkedin.com/in/vishwa-pramuditha"
+      }
     },
     {
       "id": 3,
@@ -40,7 +55,12 @@
       "role": "Founder & Head of Design Systems",
       "tags": "DESIGN SYSTEMS · MOTION",
       "seed": "ektazect-dasindu",
-      "bio": "Dasindu believes convergence should feel effortless, not engineered. He built EKTAZECT's design system around a single rule — one interface language for every module — and obsesses over the details most people feel but never notice."
+      "bio": "Dasindu believes convergence should feel effortless, not engineered. He built EKTAZECT's design system around a single rule — one interface language for every module — and obsesses over the details most people feel but never notice.",
+      "social": {
+        "x":       "https://x.com/dasindu_dilvan",
+        "github":  "https://github.com/dasindu-dilvan",
+        "linkedin":"https://linkedin.com/in/dasindu-dilvan"
+      }
     },
     {
       "id": 4,
@@ -48,7 +68,12 @@
       "role": "Founder & Lead, Data & Intelligence",
       "tags": "STREAMING · RUST · ML",
       "seed": "ektazect-amjad",
-      "bio": "Amjad leads the data and intelligence group, turning raw event streams into answers before you finish asking the question. He's the reason Pulse renders in real time and Vault has never lost a row. Rust, streams, and strong coffee."
+      "bio": "Amjad leads the data and intelligence group, turning raw event streams into answers before you finish asking the question. He's the reason Pulse renders in real time and Vault has never lost a row. Rust, streams, and strong coffee.",
+      "social": {
+        "x":       "https://x.com/amjad_hassan",
+        "github":  "https://github.com/amjad-hassan",
+        "linkedin":"https://linkedin.com/in/amjad-hassan"
+      }
     }
   ],
   "stats": [
