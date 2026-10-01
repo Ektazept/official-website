@@ -1,5 +1,7 @@
 .footer {
-  background: var(--ink-2);
+  background: rgba(2, 4, 10, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: #c7d0de;
   border-top: 1px solid var(--dark-line);
 }

@@ -1,5 +1,5 @@
 .cta {
-  background: var(--ink);
+  background: transparent;
   color: #fff;
   padding: calc(var(--sec-pad) - 4px) 0 calc(var(--sec-pad) - 24px);
   position: relative;

@@ -1,5 +1,5 @@
 .team {
-  background: var(--ink);
+  background: transparent;
   color: #fff;
   padding: var(--sec-pad) 0;
 }
