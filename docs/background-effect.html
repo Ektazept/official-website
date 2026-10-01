@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Background Effect</title>
+<style>
+:root{ --bg:#04070f; }
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;overflow:hidden;background:var(--bg)}
+
+/* ============ BACKGROUND FX LAYERS ============ */
+#net{position:fixed;inset:0;z-index:0}
+.aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.aurora .b{position:absolute;border-radius:50%}
+.b1{width:60vmax;height:60vmax;top:-22vmax;right:-16vmax;background:radial-gradient(circle,rgba(37,99,235,.32),rgba(37,99,235,0) 62%);animation:drift1 26s ease-in-out infinite alternate}
+.b2{width:55vmax;height:55vmax;bottom:-24vmax;left:-18vmax;background:radial-gradient(circle,rgba(124,93,250,.26),rgba(124,93,250,0) 62%);animation:drift2 32s ease-in-out infinite alternate}
+.b3{width:38vmax;height:38vmax;bottom:6vmax;right:12vmax;background:radial-gradient(circle,rgba(45,212,191,.14),rgba(45,212,191,0) 60%);animation:drift3 22s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(-8vmax,10vmax) scale(1.15)}}
+@keyframes drift2{to{transform:translate(10vmax,-8vmax) scale(1.1)}}
+@keyframes drift3{to{transform:translate(-6vmax,-10vmax) scale(1.25)}}
+
+
+.noise{position:fixed;inset:0;z-index:4;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.vignette{position:fixed;inset:0;z-index:4;pointer-events:none;background:radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(2,5,12,.6) 100%)}
+
+@media (prefers-reduced-motion:reduce){
+  .b{animation:none}
+}
+</style>
+</head>
+<body>
+
+<canvas id="net"></canvas>
+<div class="aurora" aria-hidden="true"><span class="b b1"></span><span class="b b2"></span><span class="b b3"></span></div>
+<div class="noise" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<script>
+/* ============ NEURAL PARTICLE NETWORK ============ */
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cv=document.getElementById('net'),cx=cv.getContext('2d');
+let W=0,H=0,pts=[];const M={x:-1e4,y:-1e4};
+const LINK=130;
+
+function sizeNet(){
+  const d=Math.min(devicePixelRatio||1,2);
+  W=innerWidth;H=innerHeight;
+  cv.width=W*d;cv.height=H*d;cv.style.width=W+'px';cv.style.height=H+'px';
+  cx.setTransform(d,0,0,d,0,0);
+  const n=Math.min(110,Math.round(W*H/15000));
+  pts=Array.from({length:n},()=>({
+    x:Math.random()*W,y:Math.random()*H,
+    vx:(Math.random()-.5)*.32,vy:(Math.random()-.5)*.32,
+    r:Math.random()*1.4+.7,
+    c:Math.random()<.55?'110,165,255':'150,130,255'
+  }));
+}
+addEventListener('resize',sizeNet);sizeNet();
+
+addEventListener('pointermove',e=>{M.x=e.clientX;M.y=e.clientY});
+addEventListener('pointerleave',()=>{M.x=M.y=-1e4});
+
+function drawNet(){
+  cx.clearRect(0,0,W,H);
+  for(const p of pts){
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<-20)p.x=W+20;else if(p.x>W+20)p.x=-20;
+    if(p.y<-20)p.y=H+20;else if(p.y>H+20)p.y=-20;
+    const dx=p.x-M.x,dy=p.y-M.y,d2=dx*dx+dy*dy;
+    if(d2<14400){const d=Math.sqrt(d2)||1;p.x+=dx/d*.6;p.y+=dy/d*.6}
+  }
+  for(let a=0;a<pts.length;a++){
+    const p=pts[a];
+    for(let b=a+1;b<pts.length;b++){
+      const q=pts[b],dx=p.x-q.x,dy=p.y-q.y;
+      if(dx>LINK||dx<-LINK||dy>LINK||dy<-LINK)continue;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<LINK){
+        cx.strokeStyle=`rgba(105,155,255,${(1-d/LINK)*.26})`;
+        cx.lineWidth=1;cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(q.x,q.y);cx.stroke();
+      }
+    }
+    const md=Math.sqrt((p.x-M.x)**2+(p.y-M.y)**2);
+    if(md<170){
+      cx.strokeStyle=`rgba(80,220,200,${(1-md/170)*.45})`;
+      cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(M.x,M.y);cx.stroke();
+    }
+    cx.fillStyle=`rgba(${p.c},.85)`;
+    cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill();
+  }
+}
+function loop(){
+  drawNet();
+  requestAnimationFrame(loop);
+}
+if(RM)drawNet();else loop();
+</script>
+</body>
+</html>
