@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import data from "@/util/data.json";
+import Logo from "./Logo";
 import styles from "./Nav.module.css";
 
 export default function Nav() {
@@ -48,11 +49,8 @@ export default function Nav() {
       <nav className={`${styles.nav}${scrolled ? " " + styles.scrolled : ""}`} id="nav">
         <div className="container">
           <div className={styles.navInner}>
-            <a className={styles.logo} href="#top" aria-label={`${org.name} home`}>
-              <span className={styles.logoMark}>E</span>
-              <span className={styles.logoWord}>
-                EKTA<span className={styles.z}>ZECT</span>
-              </span>
+            <a className={styles.logoLink} href="#top" aria-label={`${org.name} home`}>
+              <Logo variant="light" height={32} />
             </a>
 
             <div className={styles.navLinks} id="navLinks">
@@ -86,10 +84,7 @@ export default function Nav() {
         }}
       >
         <div className={styles.mmenuTop}>
-          <span className={styles.logo}>
-            <span className={styles.logoMark}>E</span>
-            <span className={styles.logoWord}>EKTA<span className={styles.z}>ZECT</span></span>
-          </span>
+          <Logo variant="light" height={30} />
           <button className={styles.mmenuClose} aria-label="Close menu" onClick={() => setMenuOpen(false)}>
             <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M6 6l12 12M18 6L6 18" />

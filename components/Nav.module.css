@@ -7,10 +7,10 @@
 }
 
 .nav.scrolled {
-  background: rgba(248, 250, 252, 0.86);
+  background: rgba(4, 7, 15, 0.82);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom-color: var(--line);
+  border-bottom-color: var(--dark-line);
 }
 
 .navInner {
@@ -22,49 +22,10 @@
 }
 
 /* Logo */
-.logo {
+.logoLink {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
   flex: none;
-}
-
-.logoMark {
-  width: 24px;
-  height: 24px;
-  border-radius: 7px;
-  background: var(--grad);
-  flex: none;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 1;
-}
-
-.logoWord {
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: 0.02em;
-  color: #fff;
-  transition: color 0.3s;
-  white-space: nowrap;
-}
-
-.z {
-  color: var(--purple-soft);
-  transition: color 0.3s;
-}
-
-.scrolled .logoWord {
-  color: var(--ink);
-}
-
-.scrolled .z {
-  color: var(--purple);
 }
 
 /* Desktop links */
@@ -104,16 +65,16 @@
 }
 
 .scrolled .navLinks a {
-  color: var(--slate);
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .scrolled .navLinks a:hover,
 .scrolled .navLinks a.active {
-  color: var(--ink);
+  color: #fff;
 }
 
 .scrolled .navLinks a::after {
-  background: var(--purple);
+  background: var(--purple-soft);
 }
 
 /* Nav CTA button */
@@ -134,7 +95,7 @@
 }
 
 .scrolled .burger {
-  color: var(--ink);
+  color: #fff;
 }
 
 /* ============ MOBILE MENU ============ */
