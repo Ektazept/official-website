@@ -1,0 +1,7 @@
+.logo {
+  display: block;
+  flex: none;
+  /* height + width:auto set via inline style — preserves aspect ratio */
+  max-width: 100%;
+  object-fit: contain;
+}
