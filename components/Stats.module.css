@@ -10,7 +10,7 @@
 .stat {
   flex: 1 1 220px;
   padding: 8px 32px;
-  border-left: 1px solid var(--line);
+  border-left: 1px solid var(--dark-line);
 }
 
 .stat:first-child {
@@ -23,6 +23,7 @@
   font-weight: 700;
   font-size: clamp(36px, 4vw, 50px);
   letter-spacing: -0.02em;
+  color: #e2e8f0;
 }
 
 .statN em {
@@ -50,7 +51,7 @@
   .stat {
     border-left: none;
     padding: 0;
-    border-top: 2px solid var(--line);
+    border-top: 2px solid var(--dark-line);
     padding-top: 14px;
   }
 

@@ -1,8 +1,8 @@
 .pricing {
   padding: var(--sec-pad) 0;
-  background: #fff;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  background: transparent;
+  border-top: 1px solid var(--dark-line);
+  border-bottom: 1px solid var(--dark-line);
 }
 
 /* billing toggle */
@@ -13,11 +13,11 @@
   margin-top: 26px;
   font-size: 0.95rem;
   font-weight: 500;
-  color: var(--slate);
+  color: var(--slate-light);
 }
 
 .billOn {
-  color: var(--ink);
+  color: #e2e8f0;
 }
 
 .billSw {
@@ -25,7 +25,7 @@
   width: 52px;
   height: 30px;
   border-radius: 99px;
-  background: var(--line);
+  background: rgba(148, 163, 184, 0.25);
   transition: background 0.25s;
   flex: none;
   cursor: pointer;
@@ -39,8 +39,8 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.3);
+  background: #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   transition: transform 0.25s;
 }
 
@@ -79,16 +79,18 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background: var(--bg);
-  border: 1px solid var(--line);
+  background: rgba(10, 16, 31, 0.55);
+  border: 1px solid var(--dark-line);
   border-radius: var(--r);
   padding: clamp(22px, 2.4vw, 30px);
   transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .plan:hover {
   transform: translateY(-4px);
-  box-shadow: 0 22px 40px -24px rgba(15, 23, 42, 0.3);
+  box-shadow: 0 22px 40px -24px rgba(29, 78, 216, 0.35);
   border-color: var(--blue-soft);
 }
 
@@ -118,11 +120,12 @@
 .plan h3 {
   font-size: 1.2rem;
   font-weight: 700;
+  color: #e2e8f0;
 }
 
 .planDesc {
   margin-top: 8px;
-  color: var(--slate);
+  color: var(--slate-light);
   font-size: 0.95rem;
 }
 
@@ -146,7 +149,7 @@
 }
 
 .price span {
-  color: var(--slate);
+  color: var(--slate-light);
   font-size: 0.9rem;
 }
 
@@ -157,7 +160,7 @@
 .priceNote {
   font-size: 12px;
   letter-spacing: 0.06em;
-  color: var(--slate);
+  color: var(--slate-light);
   min-height: 1.4em;
 }
 
@@ -172,6 +175,7 @@
   gap: 10px;
   flex: 1;
   font-size: 0.95rem;
+  color: #c7d0de;
 }
 
 .plan li {
@@ -199,7 +203,7 @@
 
 .planFoot {
   text-align: center;
-  color: var(--slate);
+  color: var(--slate-light);
   font-size: 0.9rem;
   margin-top: 32px;
 }

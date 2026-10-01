@@ -1,8 +1,8 @@
 .vision {
   padding: var(--sec-pad) 0;
-  background: #fff;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  background: transparent;
+  border-top: 1px solid var(--dark-line);
+  border-bottom: 1px solid var(--dark-line);
 }
 
 .visionGrid {
@@ -23,7 +23,7 @@
 }
 
 .vmBlock {
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--dark-line);
   padding: 34px 0 40px;
   transition: border-color 0.3s;
 }

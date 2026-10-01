@@ -1,8 +1,8 @@
 .quotes {
   padding: var(--sec-pad) 0;
-  background: #fff;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  background: transparent;
+  border-top: 1px solid var(--dark-line);
+  border-bottom: 1px solid var(--dark-line);
 }
 
 .qStage {
@@ -74,17 +74,17 @@
 .tBtn {
   width: 48px;
   height: 48px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--dark-line);
   border-radius: 12px;
   display: grid;
   place-items: center;
   transition: 0.2s;
-  color: var(--ink);
+  color: #c7d0de;
 }
 
 .tBtn:hover {
   border-color: var(--blue);
-  color: var(--blue);
+  color: var(--blue-soft);
 }
 
 .tBtn svg {
@@ -113,7 +113,7 @@
   position: absolute;
   inset: 7px;
   border-radius: 50%;
-  background: var(--line);
+  background: rgba(148, 163, 184, 0.3);
   transition: 0.25s;
 }
 

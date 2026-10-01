@@ -5,11 +5,11 @@
 .faqList {
   max-width: 800px;
   margin: 0 auto;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--dark-line);
 }
 
 .faqItem {
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--dark-line);
 }
 
 .faqQ {
@@ -26,11 +26,11 @@
   letter-spacing: -0.01em;
   transition: color 0.2s;
   min-height: 56px;
-  color: var(--ink);
+  color: #e2e8f0;
 }
 
 .faqQ:hover {
-  color: var(--blue);
+  color: var(--blue-soft);
 }
 
 .faqQ svg {
@@ -61,7 +61,7 @@
 }
 
 .faqA p {
-  color: var(--slate);
+  color: var(--slate-light);
   padding: 0 4px 24px;
   max-width: 64ch;
 }
