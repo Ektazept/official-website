@@ -33,6 +33,10 @@ export default function Hero() {
     const pulses: { r: number }[] = [];
     let lastPulse = 0;
 
+    // Preload the favicon for the core node
+    const faviconImg = new Image();
+    faviconImg.src = "/ektazept/favicon.png";
+
     interface Particle {
       state: "fly" | "orbit";
       t: number; dur: number; orb: number; life: number;
@@ -159,8 +163,8 @@ export default function Hero() {
       }
       ctx.globalAlpha = 1;
 
-      const breathe = Math.sin(now * 0.0022) * 1.6;
-      const coreR = W < 860 ? 19 : 24;
+      const coreR = W < 860 ? 28 : 36;
+      // Outer ring decorations
       ctx.beginPath(); ctx.arc(cx, cy, coreR + 32, 0, 7);
       ctx.strokeStyle = "rgba(96,165,250,.15)"; ctx.lineWidth = 1; ctx.stroke();
       ctx.save();
@@ -168,14 +172,11 @@ export default function Hero() {
       ctx.beginPath(); ctx.arc(cx, cy, coreR + 22, 0, 7);
       ctx.strokeStyle = "rgba(167,139,250,.55)"; ctx.lineWidth = 1.4; ctx.stroke();
       ctx.restore();
-      const g = ctx.createLinearGradient(cx - 24, cy - 24, cx + 24, cy + 24);
-      g.addColorStop(0, "#1D4ED8"); g.addColorStop(1, "#7C3AED");
-      ctx.beginPath(); ctx.arc(cx, cy, coreR + breathe, 0, 7); ctx.fillStyle = g; ctx.fill();
-      ctx.fillStyle = "rgba(255,255,255,.95)";
-      ctx.font = `600 ${W < 860 ? 14 : 17}px "Space Grotesk", sans-serif`;
-      ctx.textAlign = "center"; ctx.textBaseline = "middle";
-      ctx.fillText("E", cx, cy + 1 + breathe * 0.3);
-      ctx.textBaseline = "alphabetic";
+      // Draw favicon image — fixed size, no breathe animation
+      const imgSize = coreR * 2;
+      if (faviconImg.complete && faviconImg.naturalWidth > 0) {
+        ctx.drawImage(faviconImg, cx - imgSize / 2, cy - imgSize / 2, imgSize, imgSize);
+      }
     }
 
     function start() {

@@ -78,19 +78,19 @@
   ],
   "stats": [
     {
-      "count": 12400,
+      "count": 1,
       "suffix": "+",
       "label": "TEAMS CONVERGED"
     },
     {
-      "count": 240,
+      "count": 1,
       "suffix": "+",
       "label": "NATIVE INTEGRATIONS"
     },
     {
       "count": 4.8,
       "decimals": 1,
-      "suffix": "B",
+      "suffix": "K",
       "label": "DAILY WORKFLOWS"
     },
     {
